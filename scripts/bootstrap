@@ -4,15 +4,61 @@ set -eu
 ROOT=$(CDPATH= cd -- "$(dirname "$0")/.." && pwd)
 cd "$ROOT"
 
+PACK=""
+while [ "$#" -gt 0 ]; do
+    case "$1" in
+        --pack)
+            [ "$#" -ge 2 ] || { echo "--pack requires a value" >&2; exit 2; }
+            PACK=$2
+            shift 2
+            ;;
+        --pack=*)
+            PACK=${1#--pack=}
+            shift
+            ;;
+        -h|--help)
+            echo "usage: ./scripts/bootstrap [--pack PACK]"
+            exit 0
+            ;;
+        *)
+            echo "unknown argument: $1" >&2
+            exit 2
+            ;;
+    esac
+done
+
 if [ ! -f .env ]; then
     cp .env.example .env
     echo "Created .env from .env.example"
+fi
+
+if [ -n "$PACK" ]; then
+    case "$PACK" in
+        *[!A-Za-z0-9_-]*|'') echo "invalid pack name: $PACK" >&2; exit 2 ;;
+    esac
+    [ -f "packs/$PACK/domain.yaml" ] || { echo "pack not found: packs/$PACK/domain.yaml" >&2; exit 2; }
+    tmp=$(mktemp)
+    awk -v pack="$PACK" '
+        BEGIN { replaced = 0 }
+        /^DEFAULT_PACK=/ { print "DEFAULT_PACK=" pack; replaced = 1; next }
+        { print }
+        END { if (!replaced) print "DEFAULT_PACK=" pack }
+    ' .env > "$tmp"
+    mv "$tmp" .env
 fi
 
 set -a
 . ./.env
 set +a
 
+: "${DEFAULT_PACK:=example}"
+[ -f "packs/$DEFAULT_PACK/domain.yaml" ] || {
+    echo "DEFAULT_PACK=$DEFAULT_PACK does not exist" >&2
+    exit 2
+}
+
+echo "Bootstrapping Industry World Model with pack: $DEFAULT_PACK"
 docker compose up -d --build --wait
 "$ROOT/scripts/healthcheck"
-echo "Industry World Model is ready at http://localhost:${WEB_PORT:-3000}"
+echo "Industry World Model v0.2 is ready at http://localhost:${WEB_PORT:-3000}"
+echo "Pack runtime: http://localhost:${API_PORT:-8080}/api/v1/packs/$DEFAULT_PACK"
