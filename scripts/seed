@@ -9,8 +9,15 @@ if [ -f .env ]; then
     set +a
 fi
 
+PACK=${DEFAULT_PACK:-example}
+SEED="packs/$PACK/seed.sql"
+if [ ! -f "$SEED" ]; then
+    echo "pack '$PACK' has no seed.sql; nothing to seed"
+    exit 0
+fi
+
 docker compose exec -T db psql \
     -U "${POSTGRES_USER:-iwm}" \
     -d "${POSTGRES_DB:-industry_world_model}" \
-    -v ON_ERROR_STOP=1 < packs/example/seed.sql
-echo "example pack seeded"
+    -v ON_ERROR_STOP=1 < "$SEED"
+echo "$PACK pack seeded"
