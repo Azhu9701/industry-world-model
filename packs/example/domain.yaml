@@ -1,0 +1,26 @@
+name: example
+title: Example Industry
+version: 0.1.0
+
+entities:
+  company:
+    label: Company
+    fields: [website, founded_at, headquarters]
+  product:
+    label: Product
+    fields: [manufacturer, release_date]
+
+claims:
+  - website
+  - founded_at
+  - headquarters
+  - release_date
+
+relations:
+  - subject: company
+    predicate: produces
+    object: product
+
+events:
+  - product_release
+  - partnership

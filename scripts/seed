@@ -1,0 +1,16 @@
+#!/bin/sh
+set -eu
+
+ROOT=$(CDPATH= cd -- "$(dirname "$0")/.." && pwd)
+cd "$ROOT"
+if [ -f .env ]; then
+    set -a
+    . ./.env
+    set +a
+fi
+
+docker compose exec -T db psql \
+    -U "${POSTGRES_USER:-iwm}" \
+    -d "${POSTGRES_DB:-industry_world_model}" \
+    -v ON_ERROR_STOP=1 < packs/example/seed.sql
+echo "example pack seeded"

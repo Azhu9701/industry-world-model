@@ -1,0 +1,18 @@
+#!/bin/sh
+set -eu
+
+ROOT=$(CDPATH= cd -- "$(dirname "$0")/.." && pwd)
+cd "$ROOT"
+
+if [ ! -f .env ]; then
+    cp .env.example .env
+    echo "Created .env from .env.example"
+fi
+
+set -a
+. ./.env
+set +a
+
+docker compose up -d --build --wait
+"$ROOT/scripts/healthcheck"
+echo "Industry World Model is ready at http://localhost:${WEB_PORT:-3000}"

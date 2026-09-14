@@ -1,0 +1,97 @@
+name: robotics
+title: Robotics Industry
+version: 0.1.0
+
+entities:
+  robot:
+    label: Robot
+    fields:
+      - manufacturer
+      - height
+      - weight
+      - payload
+      - locomotion
+      - release_date
+      - official_url
+  company:
+    label: Company
+    fields:
+      - founded_at
+      - headquarters
+      - website
+  model:
+    label: AI Model
+    fields:
+      - release_date
+      - license
+  dataset:
+    label: Dataset
+    fields:
+      - release_date
+      - license
+  project:
+    label: Open Source Project
+    fields:
+      - repository
+      - license
+  facility:
+    label: Factory or Lab
+    fields:
+      - location
+      - opened_at
+
+claims:
+  - height
+  - weight
+  - payload
+  - locomotion
+  - release_date
+  - founded_at
+  - headquarters
+  - website
+  - license
+  - repository
+
+relations:
+  - subject: company
+    predicate: manufactures
+    object: robot
+  - subject: company
+    predicate: develops
+    object: model
+  - subject: company
+    predicate: develops
+    object: project
+  - subject: robot
+    predicate: uses
+    object: model
+  - subject: dataset
+    predicate: used_by
+    object: model
+  - subject: company
+    predicate: operates
+    object: facility
+  - subject: company
+    predicate: invests_in
+    object: company
+
+events:
+  - product_announcement
+  - product_release
+  - mass_production
+  - deployment
+  - funding
+  - partnership
+  - acquisition
+  - open_source_release
+  - facility_opening
+
+event_relations:
+  - announced_after
+  - commercialized_after
+  - deployed_after
+  - funded_after
+  - mass_production_after
+  - supersedes
+  - caused_by
+  - enabled_by

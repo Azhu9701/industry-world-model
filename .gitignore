@@ -1,0 +1,8 @@
+.env
+.DS_Store
+target/
+node_modules/
+.output/
+dist/
+__pycache__/
+*.pyc
