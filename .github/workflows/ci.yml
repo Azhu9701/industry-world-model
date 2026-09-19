@@ -21,6 +21,8 @@ jobs:
         run: python scripts/validate-contributions.py
       - name: Test Decision Packet adapter
         run: python scripts/test-decision-packet-adapter.py
+      - name: Test production Sensor Kev bridge
+        run: python scripts/test_sensor_kev_bridge.py
 
   api:
     runs-on: ubuntu-latest
