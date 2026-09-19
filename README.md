@@ -1,203 +1,219 @@
-# Industry World Model Starter
+# Industry World Model Framework
 
-Turn a small domain pack into an evidence-backed industry database that agents can inspect, extend, and deploy.
+Build a machine-readable model of a real industry from evidence-backed entities, claims, relations, events, and time.
 
-The core flow is deliberately small:
+Industry World Model is not a website template and not a vertical database dump. The framework defines how an industry can be represented, changed, reviewed, and consumed by humans and agents.
 
-```text
-domain.yaml
-    ↓
-Pack runtime validation
-    ↓
-Source -> Evidence -> Claim / Relation / Event -> Timeline / Graph / API
-             ^                 |
-             |                 v
-           Review <----- Agent proposals
-```
+Robotics is the first reference implementation. The same core can support manufacturing, energy, agriculture, logistics, semiconductors, biotech, or another domain by changing the domain pack instead of forking the truth model.
 
-`packs/robotics` is the first reference domain. Replace it with semiconductor, energy, biotech, manufacturing, or another pack without forking the core data model.
+## Why this exists
+
+A real industry is not one table of products.
+
+It contains identities, assertions, relationships, events, conflicting sources, changing states, and history. Agents need those structures explicitly if they are expected to reason about an industry and eventually act inside it.
+
+The shared model therefore separates:
+
+- Entity — stable identity.
+- Claim — an assertion about an entity.
+- Evidence — why an assertion, relation, or event should be considered.
+- Relation — a typed connection between entities.
+- Event — a first-class change in the world.
+- Snapshot — a versioned description of how accepted world state changed.
+
+The intended loop is:
+
+    external world
+        ↓
+    sensors / humans / agents
+        ↓
+    contribution packet
+        ↓
+    schema + ontology + evidence validation
+        ↓
+    review
+        ↓
+    canonical world model
+        ↓
+    graph / timeline / query / reasoning
+        ↓
+    planning and action
+        ↓
+    new world state
+
+## v0.3 — World Model Contribution Protocol
+
+v0.3 adds a Git-native public contribution contract on top of the v0.2 runtime.
+
+A contributor does not write directly to PostgreSQL and does not get to declare a fact verified. It submits a structured packet containing proposed facts and their evidence.
+
+The packet is checked against:
+
+1. JSON Schema.
+2. The selected domain pack ontology.
+3. Relation triple rules.
+4. Evidence-to-fact references.
+5. The proposed-only trust boundary for incoming assertions.
+6. Stable IDs and idempotency metadata.
+
+This means a previously unknown human or Agent can submit a machine-checkable industry update without receiving database access.
+
+See protocol/README.md and CONTRIBUTING.md.
 
 ## Quick start
 
-Requirements: Docker with Compose, Git, and curl.
+Requirements: Docker with Compose, Git, curl, and Python 3.11+ for protocol validation.
 
-```sh
-git clone https://github.com/Azhu9701/industry-world-model.git
-cd industry-world-model
-./scripts/bootstrap --pack robotics
-```
+    git clone https://github.com/Azhu9701/industry-world-model.git
+    cd industry-world-model
+    ./scripts/bootstrap --pack robotics
 
-Or start with the tiny example pack:
+Validate the public contribution contract:
 
-```sh
-./scripts/bootstrap --pack example
-./scripts/seed
-```
+    python3 -m pip install -r protocol/requirements.txt
+    python3 scripts/validate-contributions.py
 
-Bootstrap copies `.env.example` to `.env`, selects the requested pack, builds the containers, applies migrations, validates the pack at API startup, starts the stack, and runs health checks.
+Runtime endpoints:
 
 - Web: http://localhost:3000
 - API: http://localhost:8080/health
 - Agent: http://localhost:8090/health
-- Active pack: http://localhost:8080/api/v1/packs/<pack>
-
-Stop the stack with `docker compose down`. Remove local database data only when intentional with `docker compose down -v`.
-
-## What v0.2 changes
-
-v0.2 makes domain packs executable instead of descriptive-only configuration.
-
-- The API loads and validates `DEFAULT_PACK` at startup.
-- `domain.yaml` controls accepted entity types, claim predicates, relation triples, and event types.
-- Generic entity, relation, event, timeline, graph, review, and pack endpoints work for every pack.
-- The web app reads the active pack at runtime instead of hard-coding robotics or example fields.
-- The Python agent can submit pack-validated candidates to the Rust API without direct database access.
-- Candidate writes are review-first and disabled by default.
-- `./scripts/bootstrap --pack <name>` and `./scripts/seed` follow the selected pack.
+- Active pack: http://localhost:8080/api/v1/packs/robotics
 
 ## Architecture
 
-```text
-┌────────────────────────────────────────────┐
-│ Domain pack                                │
-│ entities · claims · relations · events     │
-└──────────────────────┬─────────────────────┘
-                       ↓
-┌────────────────────────────────────────────┐
-│ Rust API / Pack Runtime                    │
-│ validate · read models · proposal gateway  │
-└──────────────┬─────────────────┬───────────┘
-               ↓                 ↓
-        PostgreSQL truth     Python Agent
-               ↓                 ↓
- entity/claim/evidence     skills + proposals
- relation/event/review           │
-               └──────────┬───────┘
-                          ↓
-                  TanStack generic UI
-```
+    Domain Pack
+    entities · claim predicates · relation triples · event types
+                         ↓
+              Contribution Protocol
+          Entity / Claim / Evidence / Event
+                         ↓
+              validator + review boundary
+                         ↓
+               Canonical World Model
+                         ↓
+        PostgreSQL truth / graph / timeline
+                  ↙                 ↘
+             Rust API            Python Agent
+                  ↘                 ↙
+                    Generic Web UI
 
-## Core model
+Domain packs define vocabulary. They do not fork provenance, review, identity, audit, or temporal semantics.
 
-An `Entity` is identity. A `Claim` is an assertion about that identity. A `Source` is where information came from. `Evidence` binds a precise source excerpt or selector to one claim, relation, event, or media asset.
+## Repository structure
 
-Facts are never flattened into entity columns when sources can disagree. Events are first-class records with stable `event_key` values, participants in `event_entities`, and evidence of their own. Articles and projections belong downstream; they must not silently become facts.
+    protocol/
+      schemas/                 JSON Schema contract for v0.3
+      README.md                protocol semantics and runtime mapping
 
-The shared schema includes:
+    contributions/
+      <pack>/<slug>/
+        contribution.json      Git-native contribution packets
 
-```text
-Entity, Alias, Claim, Source, Evidence, Relation, Event, EventEntity,
-MediaAsset, IngestJob, ReviewTask, ChangeLog
-```
+    examples/
+      robotics/
+        contribution.json      portable reference contribution
+        snapshot.json          resulting world-state diff example
+
+    packs/
+      robotics/                first reference ontology
+      example/                 tiny starter ontology
+
+    apps/
+      api/                     Rust truth/read-model API
+      agent/                   proposal gateway for deployed instances
+      web/                     generic runtime UI
+
+    scripts/
+      validate-contributions.py
 
 ## Domain packs
 
-A pack declares its vocabulary in `packs/<name>/domain.yaml`.
+A pack declares the vocabulary that is legal for a domain.
 
-```yaml
-name: example
-title: Example Industry
-version: 0.2.0
+Example:
 
-entities:
-  company:
-    label: Company
-    fields: [website]
-  product:
-    label: Product
-    fields: [release_date]
+    name: robotics
 
-claims: [website, release_date]
+    entities:
+      company:
+        label: Company
+      robot:
+        label: Robot
 
-relations:
-  - subject: company
-    predicate: produces
-    object: product
+    claims:
+      - release_date
 
-events: [product_release]
-```
+    relations:
+      - subject: company
+        predicate: manufactures
+        object: robot
 
-At runtime the API rejects malformed packs, relations that reference unknown entity types, duplicate vocabulary entries, and proposal kinds that are not declared by the selected pack.
+    events:
+      - product_release
 
-Keep a pack descriptive. Provenance, review state, audit behavior, identity rules, and the shared PostgreSQL schema stay in the core engine.
+A contribution that uses an undeclared entity type, claim predicate, relation triple, or event type fails validation.
 
-## Read API
+Robotics is intentionally a reference implementation, not special application code.
 
-```text
-GET /health
-GET /api/v1/meta
-GET /api/v1/packs
-GET /api/v1/packs/:pack
-GET /api/v1/entities?pack=<pack>&entity_type=<type>
-GET /api/v1/entities/:id
-GET /api/v1/relations?pack=<pack>
-GET /api/v1/events?pack=<pack>
-GET /api/v1/timeline?pack=<pack>
-GET /api/v1/graph?pack=<pack>
-GET /api/v1/review-tasks?pack=<pack>
-```
+## Public contribution flow
 
-The graph endpoint is a generic read model derived from entities and relations. The timeline endpoint is a generic read model derived from first-class events.
+    discover
+      ↓
+    extract
+      ↓
+    resolve identity
+      ↓
+    create Claim / Relation / Event
+      ↓
+    attach Evidence
+      ↓
+    contribution.json
+      ↓
+    Pull Request
+      ↓
+    CI validation
+      ↓
+    human / agent review
+      ↓
+    accepted contribution
+      ↓
+    materialization policy
+      ↓
+    World Snapshot
 
-## Agent proposal API
+All incoming Claims, Relations, and Events must use status proposed. CI rejects contributions that attempt to self-promote to verified truth.
 
-Agents never write directly to PostgreSQL. They submit a pack-validated candidate to the API, which stores it as an `ingest_job`, creates a `review_task`, and records a `change_log` entry.
+First-party evidence is useful evidence, but it does not bypass review.
 
-Writes are off by default. To enable them locally, set:
+## Deployed Agent proposal API
 
-```env
-WRITE_API_ENABLED=true
-IWM_WRITE_KEY=replace-with-a-random-local-secret
-```
+v0.2's deployed proposal boundary remains supported.
 
-Then an agent can call the Python gateway:
+Agents operating against a running node can send pack-validated candidates through the Agent service. They never write directly to PostgreSQL. The Rust API stores the candidate as an ingest job and review task.
 
-```text
-POST http://localhost:8090/api/v1/proposals
-```
+Public Git contributions and deployed API proposals are two intake surfaces for the same invariant:
 
-Example event candidate:
+> proposed information enters review before it becomes canonical world state.
 
-```json
-{
-  "pack": "robotics",
-  "kind": "event",
-  "payload": {
-    "event_type": "product_release",
-    "title": "Example release candidate"
-  },
-  "source": {
-    "url": "https://example.com/official-release",
-    "title": "Official release"
-  },
-  "idempotency_key": "example-release-2026-01"
-}
-```
+## Current runtime model
 
-Claim, relation, event, and media proposals require source metadata. Entity proposals may be submitted without source evidence because they establish identity rather than asserting a verified fact.
+The PostgreSQL core currently contains:
 
-v0.2 intentionally queues candidates for review instead of auto-materializing them into verified facts. Review decisions and materialization policy can evolve without giving agents direct database write access.
+    Entity, Alias, Source, Claim, Evidence, Relation, Event, EventEntity,
+    MediaAsset, IngestJob, ReviewTask, ChangeLog
 
-## Agent handoff
+v0.3 does not require a database migration. Protocol objects map onto the existing truth model, while Snapshot is initially an external version/diff contract. This keeps the contribution protocol independently testable before automatic materialization is introduced.
 
-Give an agent this repository and say:
+## What comes next
 
-> Read `AGENTS.md`. Run `./scripts/bootstrap --pack robotics` (or create a new domain pack), inspect `/api/v1/packs/<pack>`, then use the focused skills to discover, extract, verify, and submit evidence-backed candidates through the proposal endpoint. Never write directly to PostgreSQL.
+The immediate next step after v0.3 is not federation or token incentives.
 
-## Common operations
+The next proof is narrower:
 
-```sh
-./scripts/bootstrap --pack robotics
-./scripts/migrate
-./scripts/seed
-./scripts/healthcheck
-./scripts/deploy
-./scripts/upgrade
-```
+> Can an independent Agent discover a real industry change, submit a valid evidence-backed packet, pass CI and review, and produce a deterministic world-state update?
 
-## v0.2 boundary
-
-This release establishes the pack runtime and review-first proposal boundary. It does **not** yet auto-materialize approved proposals, provide authentication for multi-user public deployments, run background ingestion queues, or render an interactive force-directed graph. Those belong after the review/materialization contract is proven against real domain workflows.
+Once that loop is reliable, the project can add materialization, public contribution APIs, entity resolution services, world diffs, and eventually interoperable nodes.
 
 ## License
 
