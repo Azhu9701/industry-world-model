@@ -1,0 +1,132 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://aiman.world/industry-world-model/protocol/v0.3/event.schema.json",
+  "title": "Industry World Model Event",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "id",
+    "event_type",
+    "event_key",
+    "title",
+    "classification",
+    "status",
+    "observed_at",
+    "evidence_ids"
+  ],
+  "properties": {
+    "id": {
+      "type": "string",
+      "pattern": "^event:[A-Za-z0-9._:-]+$"
+    },
+    "event_type": {
+      "type": "string",
+      "minLength": 1
+    },
+    "event_key": {
+      "type": "string",
+      "minLength": 1
+    },
+    "title": {
+      "type": "string",
+      "minLength": 1
+    },
+    "summary": {
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "occurred_on": {
+      "type": [
+        "string",
+        "null"
+      ],
+      "format": "date"
+    },
+    "occurred_end": {
+      "type": [
+        "string",
+        "null"
+      ],
+      "format": "date"
+    },
+    "date_precision": {
+      "type": "string",
+      "enum": [
+        "day",
+        "month",
+        "year",
+        "unknown"
+      ]
+    },
+    "classification": {
+      "type": "string",
+      "enum": [
+        "NEW_EVENT",
+        "FOLLOW_UP",
+        "ENRICHMENT"
+      ]
+    },
+    "status": {
+      "type": "string",
+      "enum": [
+        "proposed",
+        "verified",
+        "disputed",
+        "rejected"
+      ]
+    },
+    "observed_at": {
+      "type": "string",
+      "format": "date-time"
+    },
+    "participants": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": [
+          "entity",
+          "role"
+        ],
+        "properties": {
+          "entity": {
+            "type": "object",
+            "additionalProperties": false,
+            "required": [
+              "entity_type",
+              "entity_key"
+            ],
+            "properties": {
+              "entity_type": {
+                "type": "string",
+                "minLength": 1
+              },
+              "entity_key": {
+                "type": "string",
+                "minLength": 1
+              }
+            }
+          },
+          "role": {
+            "type": "string",
+            "minLength": 1
+          }
+        }
+      }
+    },
+    "attributes": {
+      "type": "object"
+    },
+    "evidence_ids": {
+      "type": "array",
+      "minItems": 1,
+      "uniqueItems": true,
+      "items": {
+        "type": "string",
+        "pattern": "^evidence:[A-Za-z0-9._:-]+$"
+      }
+    }
+  }
+}
