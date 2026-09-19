@@ -1,0 +1,292 @@
+{
+  "decision_packet_version": "0.2c",
+  "pack": "robotics",
+  "observed_at": "2026-09-19T03:30:00Z",
+  "idempotency_key": "viabot-series-a-2026-09-17",
+  "contributor": {
+    "id": "agent:aiman-sensor",
+    "type": "agent",
+    "display_name": "AIMAN Sensor"
+  },
+  "source": {
+    "url": "https://www.prnewswire.com/news-releases/viabot-announces-24m-series-a-to-scale-precision-outdoor-commercial-property-care-302882113.html",
+    "title": "VIABOT™ ANNOUNCES $24M SERIES A TO SCALE PRECISION OUTDOOR COMMERCIAL PROPERTY CARE",
+    "publisher": "Viabot",
+    "source_type": "first_party",
+    "published_at": "2026-09-17T09:15:00-04:00",
+    "accessed_at": "2026-09-19T03:30:00Z"
+  },
+  "decision": {
+    "content_type": "company_funding",
+    "is_event": true,
+    "event_type": "funding",
+    "timeline_worthy": true,
+    "commercialization_stage": "commercial_deployment",
+    "source_quality": "official_first_party",
+    "needs_second_source": false
+  },
+  "extraction": {
+    "summary": "Viabot announced a $24 million Series A led by Walden International, bringing total capital raised to $43 million.",
+    "entities": [
+      {
+        "entity_type": "company",
+        "entity_key": "viabot",
+        "name": "Viabot",
+        "attributes": {
+          "country": "United States"
+        }
+      },
+      {
+        "entity_type": "company",
+        "entity_key": "walden-international",
+        "name": "Walden International"
+      },
+      {
+        "entity_type": "company",
+        "entity_key": "cdib-capital-group",
+        "name": "CDIB Capital Group"
+      },
+      {
+        "entity_type": "company",
+        "entity_key": "stalwart-ventures",
+        "name": "Stalwart Ventures"
+      },
+      {
+        "entity_type": "company",
+        "entity_key": "baseline-ventures",
+        "name": "Baseline Ventures"
+      },
+      {
+        "entity_type": "company",
+        "entity_key": "era-ventures",
+        "name": "Era Ventures"
+      },
+      {
+        "entity_type": "company",
+        "entity_key": "morado-ventures",
+        "name": "Morado Ventures"
+      },
+      {
+        "entity_type": "company",
+        "entity_key": "sosv",
+        "name": "SOSV"
+      }
+    ],
+    "claims": [
+      {
+        "subject": {
+          "entity_type": "company",
+          "entity_key": "viabot"
+        },
+        "predicate": "headquarters",
+        "value": {
+          "city": "Santa Clara",
+          "region": "California",
+          "country": "United States"
+        },
+        "valid_from": "2026-09-17",
+        "locator": "About Viabot / headquarters"
+      }
+    ],
+    "relations": [
+      {
+        "subject": {
+          "entity_type": "company",
+          "entity_key": "walden-international"
+        },
+        "predicate": "invests_in",
+        "object": {
+          "entity_type": "company",
+          "entity_key": "viabot"
+        },
+        "valid_from": "2026-09-17",
+        "attributes": {
+          "round": "Series A",
+          "role": "lead"
+        },
+        "locator": "Series A investor list"
+      },
+      {
+        "subject": {
+          "entity_type": "company",
+          "entity_key": "cdib-capital-group"
+        },
+        "predicate": "invests_in",
+        "object": {
+          "entity_type": "company",
+          "entity_key": "viabot"
+        },
+        "valid_from": "2026-09-17",
+        "attributes": {
+          "round": "Series A",
+          "role": "participant"
+        },
+        "locator": "Series A investor list"
+      },
+      {
+        "subject": {
+          "entity_type": "company",
+          "entity_key": "stalwart-ventures"
+        },
+        "predicate": "invests_in",
+        "object": {
+          "entity_type": "company",
+          "entity_key": "viabot"
+        },
+        "valid_from": "2026-09-17",
+        "attributes": {
+          "round": "Series A",
+          "role": "participant"
+        },
+        "locator": "Series A investor list"
+      },
+      {
+        "subject": {
+          "entity_type": "company",
+          "entity_key": "baseline-ventures"
+        },
+        "predicate": "invests_in",
+        "object": {
+          "entity_type": "company",
+          "entity_key": "viabot"
+        },
+        "valid_from": "2026-09-17",
+        "attributes": {
+          "round": "Series A",
+          "role": "existing_investor"
+        },
+        "locator": "Series A investor list"
+      },
+      {
+        "subject": {
+          "entity_type": "company",
+          "entity_key": "era-ventures"
+        },
+        "predicate": "invests_in",
+        "object": {
+          "entity_type": "company",
+          "entity_key": "viabot"
+        },
+        "valid_from": "2026-09-17",
+        "attributes": {
+          "round": "Series A",
+          "role": "existing_investor"
+        },
+        "locator": "Series A investor list"
+      },
+      {
+        "subject": {
+          "entity_type": "company",
+          "entity_key": "morado-ventures"
+        },
+        "predicate": "invests_in",
+        "object": {
+          "entity_type": "company",
+          "entity_key": "viabot"
+        },
+        "valid_from": "2026-09-17",
+        "attributes": {
+          "round": "Series A",
+          "role": "existing_investor"
+        },
+        "locator": "Series A investor list"
+      },
+      {
+        "subject": {
+          "entity_type": "company",
+          "entity_key": "sosv"
+        },
+        "predicate": "invests_in",
+        "object": {
+          "entity_type": "company",
+          "entity_key": "viabot"
+        },
+        "valid_from": "2026-09-17",
+        "attributes": {
+          "round": "Series A",
+          "role": "existing_investor"
+        },
+        "locator": "Series A investor list"
+      }
+    ],
+    "event": {
+      "event_type": "funding",
+      "event_key": "viabot-series-a-2026-09-17",
+      "title": "Viabot announces $24M Series A",
+      "summary": "Viabot announced a $24 million Series A led by Walden International, with additional new and existing investors.",
+      "occurred_on": "2026-09-17",
+      "date_precision": "day",
+      "classification": "NEW_EVENT",
+      "participants": [
+        {
+          "entity": {
+            "entity_type": "company",
+            "entity_key": "viabot"
+          },
+          "role": "funding_recipient"
+        },
+        {
+          "entity": {
+            "entity_type": "company",
+            "entity_key": "walden-international"
+          },
+          "role": "lead_investor"
+        },
+        {
+          "entity": {
+            "entity_type": "company",
+            "entity_key": "cdib-capital-group"
+          },
+          "role": "participant"
+        },
+        {
+          "entity": {
+            "entity_type": "company",
+            "entity_key": "stalwart-ventures"
+          },
+          "role": "participant"
+        },
+        {
+          "entity": {
+            "entity_type": "company",
+            "entity_key": "baseline-ventures"
+          },
+          "role": "existing_investor"
+        },
+        {
+          "entity": {
+            "entity_type": "company",
+            "entity_key": "era-ventures"
+          },
+          "role": "existing_investor"
+        },
+        {
+          "entity": {
+            "entity_type": "company",
+            "entity_key": "morado-ventures"
+          },
+          "role": "existing_investor"
+        },
+        {
+          "entity": {
+            "entity_type": "company",
+            "entity_key": "sosv"
+          },
+          "role": "existing_investor"
+        }
+      ],
+      "attributes": {
+        "round": "Series A",
+        "amount_usd": 24000000,
+        "total_capital_raised_usd": 43000000,
+        "lead_investor": "Walden International",
+        "intended_use": [
+          "sales and engineering expansion",
+          "new product development",
+          "RaaS and Viabot One improvements"
+        ]
+      },
+      "locator": "Funding announcement"
+    }
+  }
+}

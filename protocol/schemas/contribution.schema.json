@@ -99,6 +99,9 @@
       "items": {
         "type": "object"
       }
+    },
+    "metadata": {
+      "type": "object"
     }
   }
 }

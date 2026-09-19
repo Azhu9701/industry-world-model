@@ -1,0 +1,510 @@
+{
+  "protocol_version": "0.3.0",
+  "contribution_id": "contrib:robotics-viabot-series-a-2026-09-17",
+  "pack": "robotics",
+  "created_at": "2026-09-19T03:30:00Z",
+  "contributor": {
+    "id": "agent:aiman-sensor",
+    "type": "agent",
+    "display_name": "AIMAN Sensor"
+  },
+  "idempotency_key": "viabot-series-a-2026-09-17",
+  "summary": "Viabot announced a $24 million Series A led by Walden International, bringing total capital raised to $43 million.",
+  "metadata": {
+    "adapter": {
+      "name": "decision-packet-to-contribution",
+      "version": "0.1.0",
+      "input_version": "0.2c"
+    },
+    "decision": {
+      "content_type": "company_funding",
+      "is_event": true,
+      "event_type": "funding",
+      "timeline_worthy": true,
+      "commercialization_stage": "commercial_deployment",
+      "source_quality": "official_first_party",
+      "needs_second_source": false
+    },
+    "review_flags": []
+  },
+  "entities": [
+    {
+      "id": "entity:company-viabot",
+      "entity_type": "company",
+      "entity_key": "viabot",
+      "name": "Viabot",
+      "attributes": {
+        "country": "United States"
+      }
+    },
+    {
+      "id": "entity:company-walden-international",
+      "entity_type": "company",
+      "entity_key": "walden-international",
+      "name": "Walden International"
+    },
+    {
+      "id": "entity:company-cdib-capital-group",
+      "entity_type": "company",
+      "entity_key": "cdib-capital-group",
+      "name": "CDIB Capital Group"
+    },
+    {
+      "id": "entity:company-stalwart-ventures",
+      "entity_type": "company",
+      "entity_key": "stalwart-ventures",
+      "name": "Stalwart Ventures"
+    },
+    {
+      "id": "entity:company-baseline-ventures",
+      "entity_type": "company",
+      "entity_key": "baseline-ventures",
+      "name": "Baseline Ventures"
+    },
+    {
+      "id": "entity:company-era-ventures",
+      "entity_type": "company",
+      "entity_key": "era-ventures",
+      "name": "Era Ventures"
+    },
+    {
+      "id": "entity:company-morado-ventures",
+      "entity_type": "company",
+      "entity_key": "morado-ventures",
+      "name": "Morado Ventures"
+    },
+    {
+      "id": "entity:company-sosv",
+      "entity_type": "company",
+      "entity_key": "sosv",
+      "name": "SOSV"
+    }
+  ],
+  "claims": [
+    {
+      "id": "claim:viabot-headquarters-b1bf8a4bb8",
+      "subject": {
+        "entity_type": "company",
+        "entity_key": "viabot"
+      },
+      "predicate": "headquarters",
+      "value": {
+        "city": "Santa Clara",
+        "region": "California",
+        "country": "United States"
+      },
+      "status": "proposed",
+      "observed_at": "2026-09-19T03:30:00Z",
+      "evidence_ids": [
+        "evidence:claim-viabot-headquarters-b1bf8a4bb8-26aef06f"
+      ],
+      "valid_from": "2026-09-17"
+    }
+  ],
+  "relations": [
+    {
+      "id": "relation:walden-international-invests_in-viabot",
+      "subject": {
+        "entity_type": "company",
+        "entity_key": "walden-international"
+      },
+      "predicate": "invests_in",
+      "object": {
+        "entity_type": "company",
+        "entity_key": "viabot"
+      },
+      "status": "proposed",
+      "observed_at": "2026-09-19T03:30:00Z",
+      "evidence_ids": [
+        "evidence:relation-walden-international-invests_in-viabot-26aef06f"
+      ],
+      "valid_from": "2026-09-17",
+      "attributes": {
+        "round": "Series A",
+        "role": "lead"
+      }
+    },
+    {
+      "id": "relation:cdib-capital-group-invests_in-viabot",
+      "subject": {
+        "entity_type": "company",
+        "entity_key": "cdib-capital-group"
+      },
+      "predicate": "invests_in",
+      "object": {
+        "entity_type": "company",
+        "entity_key": "viabot"
+      },
+      "status": "proposed",
+      "observed_at": "2026-09-19T03:30:00Z",
+      "evidence_ids": [
+        "evidence:relation-cdib-capital-group-invests_in-viabot-26aef06f"
+      ],
+      "valid_from": "2026-09-17",
+      "attributes": {
+        "round": "Series A",
+        "role": "participant"
+      }
+    },
+    {
+      "id": "relation:stalwart-ventures-invests_in-viabot",
+      "subject": {
+        "entity_type": "company",
+        "entity_key": "stalwart-ventures"
+      },
+      "predicate": "invests_in",
+      "object": {
+        "entity_type": "company",
+        "entity_key": "viabot"
+      },
+      "status": "proposed",
+      "observed_at": "2026-09-19T03:30:00Z",
+      "evidence_ids": [
+        "evidence:relation-stalwart-ventures-invests_in-viabot-26aef06f"
+      ],
+      "valid_from": "2026-09-17",
+      "attributes": {
+        "round": "Series A",
+        "role": "participant"
+      }
+    },
+    {
+      "id": "relation:baseline-ventures-invests_in-viabot",
+      "subject": {
+        "entity_type": "company",
+        "entity_key": "baseline-ventures"
+      },
+      "predicate": "invests_in",
+      "object": {
+        "entity_type": "company",
+        "entity_key": "viabot"
+      },
+      "status": "proposed",
+      "observed_at": "2026-09-19T03:30:00Z",
+      "evidence_ids": [
+        "evidence:relation-baseline-ventures-invests_in-viabot-26aef06f"
+      ],
+      "valid_from": "2026-09-17",
+      "attributes": {
+        "round": "Series A",
+        "role": "existing_investor"
+      }
+    },
+    {
+      "id": "relation:era-ventures-invests_in-viabot",
+      "subject": {
+        "entity_type": "company",
+        "entity_key": "era-ventures"
+      },
+      "predicate": "invests_in",
+      "object": {
+        "entity_type": "company",
+        "entity_key": "viabot"
+      },
+      "status": "proposed",
+      "observed_at": "2026-09-19T03:30:00Z",
+      "evidence_ids": [
+        "evidence:relation-era-ventures-invests_in-viabot-26aef06f"
+      ],
+      "valid_from": "2026-09-17",
+      "attributes": {
+        "round": "Series A",
+        "role": "existing_investor"
+      }
+    },
+    {
+      "id": "relation:morado-ventures-invests_in-viabot",
+      "subject": {
+        "entity_type": "company",
+        "entity_key": "morado-ventures"
+      },
+      "predicate": "invests_in",
+      "object": {
+        "entity_type": "company",
+        "entity_key": "viabot"
+      },
+      "status": "proposed",
+      "observed_at": "2026-09-19T03:30:00Z",
+      "evidence_ids": [
+        "evidence:relation-morado-ventures-invests_in-viabot-26aef06f"
+      ],
+      "valid_from": "2026-09-17",
+      "attributes": {
+        "round": "Series A",
+        "role": "existing_investor"
+      }
+    },
+    {
+      "id": "relation:sosv-invests_in-viabot",
+      "subject": {
+        "entity_type": "company",
+        "entity_key": "sosv"
+      },
+      "predicate": "invests_in",
+      "object": {
+        "entity_type": "company",
+        "entity_key": "viabot"
+      },
+      "status": "proposed",
+      "observed_at": "2026-09-19T03:30:00Z",
+      "evidence_ids": [
+        "evidence:relation-sosv-invests_in-viabot-26aef06f"
+      ],
+      "valid_from": "2026-09-17",
+      "attributes": {
+        "round": "Series A",
+        "role": "existing_investor"
+      }
+    }
+  ],
+  "events": [
+    {
+      "id": "event:viabot-series-a-2026-09-17",
+      "event_type": "funding",
+      "event_key": "viabot-series-a-2026-09-17",
+      "title": "Viabot announces $24M Series A",
+      "classification": "NEW_EVENT",
+      "status": "proposed",
+      "observed_at": "2026-09-19T03:30:00Z",
+      "evidence_ids": [
+        "evidence:event-viabot-series-a-2026-09-17-26aef06f"
+      ],
+      "summary": "Viabot announced a $24 million Series A led by Walden International, with additional new and existing investors.",
+      "occurred_on": "2026-09-17",
+      "date_precision": "day",
+      "participants": [
+        {
+          "entity": {
+            "entity_type": "company",
+            "entity_key": "viabot"
+          },
+          "role": "funding_recipient"
+        },
+        {
+          "entity": {
+            "entity_type": "company",
+            "entity_key": "walden-international"
+          },
+          "role": "lead_investor"
+        },
+        {
+          "entity": {
+            "entity_type": "company",
+            "entity_key": "cdib-capital-group"
+          },
+          "role": "participant"
+        },
+        {
+          "entity": {
+            "entity_type": "company",
+            "entity_key": "stalwart-ventures"
+          },
+          "role": "participant"
+        },
+        {
+          "entity": {
+            "entity_type": "company",
+            "entity_key": "baseline-ventures"
+          },
+          "role": "existing_investor"
+        },
+        {
+          "entity": {
+            "entity_type": "company",
+            "entity_key": "era-ventures"
+          },
+          "role": "existing_investor"
+        },
+        {
+          "entity": {
+            "entity_type": "company",
+            "entity_key": "morado-ventures"
+          },
+          "role": "existing_investor"
+        },
+        {
+          "entity": {
+            "entity_type": "company",
+            "entity_key": "sosv"
+          },
+          "role": "existing_investor"
+        }
+      ],
+      "attributes": {
+        "round": "Series A",
+        "amount_usd": 24000000,
+        "total_capital_raised_usd": 43000000,
+        "lead_investor": "Walden International",
+        "intended_use": [
+          "sales and engineering expansion",
+          "new product development",
+          "RaaS and Viabot One improvements"
+        ]
+      }
+    }
+  ],
+  "evidence": [
+    {
+      "id": "evidence:claim-viabot-headquarters-b1bf8a4bb8-26aef06f",
+      "target": {
+        "kind": "claim",
+        "id": "claim:viabot-headquarters-b1bf8a4bb8"
+      },
+      "source": {
+        "url": "https://www.prnewswire.com/news-releases/viabot-announces-24m-series-a-to-scale-precision-outdoor-commercial-property-care-302882113.html",
+        "title": "VIABOT™ ANNOUNCES $24M SERIES A TO SCALE PRECISION OUTDOOR COMMERCIAL PROPERTY CARE",
+        "publisher": "Viabot",
+        "source_type": "first_party",
+        "published_at": "2026-09-17T09:15:00-04:00",
+        "accessed_at": "2026-09-19T03:30:00Z"
+      },
+      "captured_at": "2026-09-19T03:30:00Z",
+      "stance": "supports",
+      "locator": "About Viabot / headquarters"
+    },
+    {
+      "id": "evidence:relation-walden-international-invests_in-viabot-26aef06f",
+      "target": {
+        "kind": "relation",
+        "id": "relation:walden-international-invests_in-viabot"
+      },
+      "source": {
+        "url": "https://www.prnewswire.com/news-releases/viabot-announces-24m-series-a-to-scale-precision-outdoor-commercial-property-care-302882113.html",
+        "title": "VIABOT™ ANNOUNCES $24M SERIES A TO SCALE PRECISION OUTDOOR COMMERCIAL PROPERTY CARE",
+        "publisher": "Viabot",
+        "source_type": "first_party",
+        "published_at": "2026-09-17T09:15:00-04:00",
+        "accessed_at": "2026-09-19T03:30:00Z"
+      },
+      "captured_at": "2026-09-19T03:30:00Z",
+      "stance": "supports",
+      "locator": "Series A investor list"
+    },
+    {
+      "id": "evidence:relation-cdib-capital-group-invests_in-viabot-26aef06f",
+      "target": {
+        "kind": "relation",
+        "id": "relation:cdib-capital-group-invests_in-viabot"
+      },
+      "source": {
+        "url": "https://www.prnewswire.com/news-releases/viabot-announces-24m-series-a-to-scale-precision-outdoor-commercial-property-care-302882113.html",
+        "title": "VIABOT™ ANNOUNCES $24M SERIES A TO SCALE PRECISION OUTDOOR COMMERCIAL PROPERTY CARE",
+        "publisher": "Viabot",
+        "source_type": "first_party",
+        "published_at": "2026-09-17T09:15:00-04:00",
+        "accessed_at": "2026-09-19T03:30:00Z"
+      },
+      "captured_at": "2026-09-19T03:30:00Z",
+      "stance": "supports",
+      "locator": "Series A investor list"
+    },
+    {
+      "id": "evidence:relation-stalwart-ventures-invests_in-viabot-26aef06f",
+      "target": {
+        "kind": "relation",
+        "id": "relation:stalwart-ventures-invests_in-viabot"
+      },
+      "source": {
+        "url": "https://www.prnewswire.com/news-releases/viabot-announces-24m-series-a-to-scale-precision-outdoor-commercial-property-care-302882113.html",
+        "title": "VIABOT™ ANNOUNCES $24M SERIES A TO SCALE PRECISION OUTDOOR COMMERCIAL PROPERTY CARE",
+        "publisher": "Viabot",
+        "source_type": "first_party",
+        "published_at": "2026-09-17T09:15:00-04:00",
+        "accessed_at": "2026-09-19T03:30:00Z"
+      },
+      "captured_at": "2026-09-19T03:30:00Z",
+      "stance": "supports",
+      "locator": "Series A investor list"
+    },
+    {
+      "id": "evidence:relation-baseline-ventures-invests_in-viabot-26aef06f",
+      "target": {
+        "kind": "relation",
+        "id": "relation:baseline-ventures-invests_in-viabot"
+      },
+      "source": {
+        "url": "https://www.prnewswire.com/news-releases/viabot-announces-24m-series-a-to-scale-precision-outdoor-commercial-property-care-302882113.html",
+        "title": "VIABOT™ ANNOUNCES $24M SERIES A TO SCALE PRECISION OUTDOOR COMMERCIAL PROPERTY CARE",
+        "publisher": "Viabot",
+        "source_type": "first_party",
+        "published_at": "2026-09-17T09:15:00-04:00",
+        "accessed_at": "2026-09-19T03:30:00Z"
+      },
+      "captured_at": "2026-09-19T03:30:00Z",
+      "stance": "supports",
+      "locator": "Series A investor list"
+    },
+    {
+      "id": "evidence:relation-era-ventures-invests_in-viabot-26aef06f",
+      "target": {
+        "kind": "relation",
+        "id": "relation:era-ventures-invests_in-viabot"
+      },
+      "source": {
+        "url": "https://www.prnewswire.com/news-releases/viabot-announces-24m-series-a-to-scale-precision-outdoor-commercial-property-care-302882113.html",
+        "title": "VIABOT™ ANNOUNCES $24M SERIES A TO SCALE PRECISION OUTDOOR COMMERCIAL PROPERTY CARE",
+        "publisher": "Viabot",
+        "source_type": "first_party",
+        "published_at": "2026-09-17T09:15:00-04:00",
+        "accessed_at": "2026-09-19T03:30:00Z"
+      },
+      "captured_at": "2026-09-19T03:30:00Z",
+      "stance": "supports",
+      "locator": "Series A investor list"
+    },
+    {
+      "id": "evidence:relation-morado-ventures-invests_in-viabot-26aef06f",
+      "target": {
+        "kind": "relation",
+        "id": "relation:morado-ventures-invests_in-viabot"
+      },
+      "source": {
+        "url": "https://www.prnewswire.com/news-releases/viabot-announces-24m-series-a-to-scale-precision-outdoor-commercial-property-care-302882113.html",
+        "title": "VIABOT™ ANNOUNCES $24M SERIES A TO SCALE PRECISION OUTDOOR COMMERCIAL PROPERTY CARE",
+        "publisher": "Viabot",
+        "source_type": "first_party",
+        "published_at": "2026-09-17T09:15:00-04:00",
+        "accessed_at": "2026-09-19T03:30:00Z"
+      },
+      "captured_at": "2026-09-19T03:30:00Z",
+      "stance": "supports",
+      "locator": "Series A investor list"
+    },
+    {
+      "id": "evidence:relation-sosv-invests_in-viabot-26aef06f",
+      "target": {
+        "kind": "relation",
+        "id": "relation:sosv-invests_in-viabot"
+      },
+      "source": {
+        "url": "https://www.prnewswire.com/news-releases/viabot-announces-24m-series-a-to-scale-precision-outdoor-commercial-property-care-302882113.html",
+        "title": "VIABOT™ ANNOUNCES $24M SERIES A TO SCALE PRECISION OUTDOOR COMMERCIAL PROPERTY CARE",
+        "publisher": "Viabot",
+        "source_type": "first_party",
+        "published_at": "2026-09-17T09:15:00-04:00",
+        "accessed_at": "2026-09-19T03:30:00Z"
+      },
+      "captured_at": "2026-09-19T03:30:00Z",
+      "stance": "supports",
+      "locator": "Series A investor list"
+    },
+    {
+      "id": "evidence:event-viabot-series-a-2026-09-17-26aef06f",
+      "target": {
+        "kind": "event",
+        "id": "event:viabot-series-a-2026-09-17"
+      },
+      "source": {
+        "url": "https://www.prnewswire.com/news-releases/viabot-announces-24m-series-a-to-scale-precision-outdoor-commercial-property-care-302882113.html",
+        "title": "VIABOT™ ANNOUNCES $24M SERIES A TO SCALE PRECISION OUTDOOR COMMERCIAL PROPERTY CARE",
+        "publisher": "Viabot",
+        "source_type": "first_party",
+        "published_at": "2026-09-17T09:15:00-04:00",
+        "accessed_at": "2026-09-19T03:30:00Z"
+      },
+      "captured_at": "2026-09-19T03:30:00Z",
+      "stance": "supports",
+      "locator": "Funding announcement"
+    }
+  ]
+}

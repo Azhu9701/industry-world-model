@@ -1,0 +1,435 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://aiman.world/industry-world-model/protocol/v0.3/adapters/decision-packet.schema.json",
+  "title": "AIMAN Decision Packet Adapter Input",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "decision_packet_version",
+    "pack",
+    "observed_at",
+    "idempotency_key",
+    "contributor",
+    "source",
+    "decision",
+    "extraction"
+  ],
+  "properties": {
+    "decision_packet_version": {
+      "type": "string",
+      "minLength": 1
+    },
+    "pack": {
+      "type": "string",
+      "minLength": 1
+    },
+    "observed_at": {
+      "type": "string",
+      "format": "date-time"
+    },
+    "idempotency_key": {
+      "type": "string",
+      "minLength": 1
+    },
+    "contributor": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "id",
+        "type"
+      ],
+      "properties": {
+        "id": {
+          "type": "string",
+          "minLength": 1
+        },
+        "type": {
+          "type": "string",
+          "enum": [
+            "human",
+            "agent",
+            "organization"
+          ]
+        },
+        "display_name": {
+          "type": [
+            "string",
+            "null"
+          ]
+        }
+      }
+    },
+    "source": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "url",
+        "title",
+        "source_type"
+      ],
+      "properties": {
+        "url": {
+          "type": "string",
+          "pattern": "^https?://"
+        },
+        "title": {
+          "type": "string",
+          "minLength": 1
+        },
+        "publisher": {
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "source_type": {
+          "type": "string",
+          "enum": [
+            "first_party",
+            "government",
+            "regulator",
+            "academic",
+            "repository",
+            "media",
+            "database",
+            "other"
+          ]
+        },
+        "published_at": {
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "accessed_at": {
+          "type": [
+            "string",
+            "null"
+          ],
+          "format": "date-time"
+        },
+        "license": {
+          "type": [
+            "string",
+            "null"
+          ]
+        }
+      }
+    },
+    "decision": {
+      "type": "object",
+      "required": [
+        "content_type",
+        "is_event",
+        "timeline_worthy",
+        "source_quality",
+        "needs_second_source"
+      ],
+      "properties": {
+        "content_type": {
+          "type": "string",
+          "minLength": 1
+        },
+        "is_event": {
+          "type": "boolean"
+        },
+        "event_type": {
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "timeline_worthy": {
+          "type": "boolean"
+        },
+        "commercialization_stage": {
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "source_quality": {
+          "type": "string",
+          "minLength": 1
+        },
+        "needs_second_source": {
+          "type": "boolean"
+        }
+      },
+      "additionalProperties": true
+    },
+    "extraction": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "summary",
+        "entities",
+        "claims",
+        "relations"
+      ],
+      "properties": {
+        "summary": {
+          "type": "string",
+          "minLength": 1
+        },
+        "entities": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "additionalProperties": false,
+            "required": [
+              "entity_type",
+              "entity_key",
+              "name"
+            ],
+            "properties": {
+              "entity_type": {
+                "type": "string",
+                "minLength": 1
+              },
+              "entity_key": {
+                "type": "string",
+                "minLength": 1
+              },
+              "name": {
+                "type": "string",
+                "minLength": 1
+              },
+              "description": {
+                "type": [
+                  "string",
+                  "null"
+                ]
+              },
+              "aliases": {
+                "type": "array",
+                "items": {
+                  "type": "string"
+                },
+                "uniqueItems": true
+              },
+              "attributes": {
+                "type": "object"
+              }
+            }
+          }
+        },
+        "claims": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "additionalProperties": false,
+            "required": [
+              "subject",
+              "predicate",
+              "value"
+            ],
+            "properties": {
+              "subject": {
+                "$ref": "#/$defs/entity_ref"
+              },
+              "predicate": {
+                "type": "string",
+                "minLength": 1
+              },
+              "value": {},
+              "unit": {
+                "type": [
+                  "string",
+                  "null"
+                ]
+              },
+              "confidence": {
+                "type": [
+                  "number",
+                  "null"
+                ],
+                "minimum": 0,
+                "maximum": 1
+              },
+              "valid_from": {
+                "type": [
+                  "string",
+                  "null"
+                ],
+                "format": "date"
+              },
+              "valid_to": {
+                "type": [
+                  "string",
+                  "null"
+                ],
+                "format": "date"
+              },
+              "locator": {
+                "type": [
+                  "string",
+                  "null"
+                ]
+              }
+            }
+          }
+        },
+        "relations": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "additionalProperties": false,
+            "required": [
+              "subject",
+              "predicate",
+              "object"
+            ],
+            "properties": {
+              "subject": {
+                "$ref": "#/$defs/entity_ref"
+              },
+              "predicate": {
+                "type": "string",
+                "minLength": 1
+              },
+              "object": {
+                "$ref": "#/$defs/entity_ref"
+              },
+              "valid_from": {
+                "type": [
+                  "string",
+                  "null"
+                ],
+                "format": "date"
+              },
+              "valid_to": {
+                "type": [
+                  "string",
+                  "null"
+                ],
+                "format": "date"
+              },
+              "attributes": {
+                "type": "object"
+              },
+              "locator": {
+                "type": [
+                  "string",
+                  "null"
+                ]
+              }
+            }
+          }
+        },
+        "event": {
+          "type": [
+            "object",
+            "null"
+          ],
+          "additionalProperties": false,
+          "required": [
+            "event_type",
+            "event_key",
+            "title"
+          ],
+          "properties": {
+            "event_type": {
+              "type": "string",
+              "minLength": 1
+            },
+            "event_key": {
+              "type": "string",
+              "minLength": 1
+            },
+            "title": {
+              "type": "string",
+              "minLength": 1
+            },
+            "summary": {
+              "type": [
+                "string",
+                "null"
+              ]
+            },
+            "occurred_on": {
+              "type": [
+                "string",
+                "null"
+              ],
+              "format": "date"
+            },
+            "occurred_end": {
+              "type": [
+                "string",
+                "null"
+              ],
+              "format": "date"
+            },
+            "date_precision": {
+              "type": "string",
+              "enum": [
+                "day",
+                "month",
+                "year",
+                "unknown"
+              ]
+            },
+            "classification": {
+              "type": "string",
+              "enum": [
+                "NEW_EVENT",
+                "FOLLOW_UP",
+                "ENRICHMENT"
+              ]
+            },
+            "participants": {
+              "type": "array",
+              "items": {
+                "type": "object",
+                "additionalProperties": false,
+                "required": [
+                  "entity",
+                  "role"
+                ],
+                "properties": {
+                  "entity": {
+                    "$ref": "#/$defs/entity_ref"
+                  },
+                  "role": {
+                    "type": "string",
+                    "minLength": 1
+                  }
+                }
+              }
+            },
+            "attributes": {
+              "type": "object"
+            },
+            "locator": {
+              "type": [
+                "string",
+                "null"
+              ]
+            }
+          }
+        }
+      }
+    }
+  },
+  "$defs": {
+    "entity_ref": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "entity_type",
+        "entity_key"
+      ],
+      "properties": {
+        "entity_type": {
+          "type": "string",
+          "minLength": 1
+        },
+        "entity_key": {
+          "type": "string",
+          "minLength": 1
+        }
+      }
+    }
+  }
+}
