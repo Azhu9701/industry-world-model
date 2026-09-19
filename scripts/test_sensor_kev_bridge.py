@@ -39,6 +39,18 @@ def main() -> int:
     assert mapped == "funding"
 
     contribution = adapter.convert(envelope)
+    for schema_name, instance in [
+        ("contribution.schema.json", contribution),
+        ("event.schema.json", contribution["events"][0]),
+    ]:
+        core_schema = json.loads((ROOT / "protocol" / "schemas" / schema_name).read_text())
+        Draft202012Validator.check_schema(core_schema)
+        Draft202012Validator(core_schema).validate(instance)
+    evidence_schema = json.loads((ROOT / "protocol" / "schemas" / "evidence.schema.json").read_text())
+    Draft202012Validator.check_schema(evidence_schema)
+    for item in contribution["evidence"]:
+        Draft202012Validator(evidence_schema).validate(item)
+
     assert contribution["protocol_version"] == "0.3.0"
     assert contribution["events"][0]["event_type"] == "funding"
     assert contribution["events"][0]["status"] == "proposed"
