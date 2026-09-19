@@ -1,0 +1,77 @@
+{
+  "envelope_version": "0.1.0",
+  "pack": "robotics",
+  "observed_at": "2026-09-19T03:40:00Z",
+  "contributor": {
+    "id": "agent:aiman-sensor-kev",
+    "type": "agent",
+    "display_name": "AIMAN Sensor + Kev"
+  },
+  "idempotency_key": "viabot-series-a-2026-09-17-sensor-kev",
+  "sensor": {
+    "verification_status": "verified",
+    "title": "Viabot announces $24M Series A",
+    "event_date": "2026-09-17",
+    "event_key": "viabot-series-a-2026-09-17",
+    "event_class": "new_event",
+    "history_link": "independent",
+    "predecessor_event_id": null,
+    "relation": null,
+    "history_reason": "This fixture represents the verified funding event as a standalone contribution input.",
+    "facts": [
+      {
+        "claim": "Viabot announced a $24 million Series A led by Walden International.",
+        "source_urls": [
+          "https://www.prnewswire.com/news-releases/viabot-announces-24m-series-a-to-scale-precision-outdoor-commercial-property-care-302882113.html",
+          "https://theroboticsmedia.com/article/viabot-24m-series-a-walden-international-cdib-viabot-one-outdoor-cleaning-september-17-2026"
+        ]
+      },
+      {
+        "claim": "The round brought Viabot's total capital raised to $43 million.",
+        "source_urls": [
+          "https://www.prnewswire.com/news-releases/viabot-announces-24m-series-a-to-scale-precision-outdoor-commercial-property-care-302882113.html",
+          "https://theroboticsmedia.com/article/viabot-24m-series-a-walden-international-cdib-viabot-one-outdoor-cleaning-september-17-2026"
+        ]
+      }
+    ],
+    "sources": [
+      {
+        "url": "https://www.prnewswire.com/news-releases/viabot-announces-24m-series-a-to-scale-precision-outdoor-commercial-property-care-302882113.html",
+        "title": "VIABOT™ ANNOUNCES $24M SERIES A TO SCALE PRECISION OUTDOOR COMMERCIAL PROPERTY CARE",
+        "source_type": "official",
+        "publisher": "Viabot",
+        "published_at": "2026-09-17T09:15:00-04:00"
+      },
+      {
+        "url": "https://theroboticsmedia.com/article/viabot-24m-series-a-walden-international-cdib-viabot-one-outdoor-cleaning-september-17-2026",
+        "title": "Viabot Raises $24M Series A Led by Walden to Scale Outdoor Cleaning Robots",
+        "source_type": "industry_media",
+        "publisher": "The Robotics Media",
+        "published_at": "2026-09-18"
+      }
+    ],
+    "caveats": [],
+    "related_entities": [
+      "Viabot",
+      "Walden International",
+      "CDIB Capital Group",
+      "Stalwart Ventures"
+    ],
+    "significance": "The financing is relevant because it funds expansion of an already-deployed autonomous property-care robotics business."
+  },
+  "kev": {
+    "model": "aiman-kev-v0.2c",
+    "contract_version": "0.2",
+    "contract_sha256": "7336e5af839f3a35909a80521cefabe2a446f397ca86ec15252917e1e5418371",
+    "model_sha256": null,
+    "decision_packet": {
+      "content_type": "event",
+      "is_event": true,
+      "event_type": "funding",
+      "timeline_worthy": true,
+      "commercialization_stage": "not_applicable",
+      "source_quality": "direct_primary",
+      "needs_second_source": false
+    }
+  }
+}
