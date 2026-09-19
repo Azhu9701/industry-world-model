@@ -1,0 +1,104 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://aiman.world/industry-world-model/protocol/v0.3/contribution.schema.json",
+  "title": "Industry World Model Contribution Packet",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "protocol_version",
+    "contribution_id",
+    "pack",
+    "created_at",
+    "contributor",
+    "idempotency_key",
+    "summary",
+    "entities",
+    "claims",
+    "relations",
+    "events",
+    "evidence"
+  ],
+  "properties": {
+    "protocol_version": {
+      "const": "0.3.0"
+    },
+    "contribution_id": {
+      "type": "string",
+      "pattern": "^contrib:[A-Za-z0-9._:-]+$"
+    },
+    "pack": {
+      "type": "string",
+      "minLength": 1
+    },
+    "created_at": {
+      "type": "string",
+      "format": "date-time"
+    },
+    "contributor": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "id",
+        "type"
+      ],
+      "properties": {
+        "id": {
+          "type": "string",
+          "minLength": 1
+        },
+        "type": {
+          "type": "string",
+          "enum": [
+            "human",
+            "agent",
+            "organization"
+          ]
+        },
+        "display_name": {
+          "type": [
+            "string",
+            "null"
+          ]
+        }
+      }
+    },
+    "idempotency_key": {
+      "type": "string",
+      "minLength": 1
+    },
+    "summary": {
+      "type": "string",
+      "minLength": 1
+    },
+    "entities": {
+      "type": "array",
+      "items": {
+        "type": "object"
+      }
+    },
+    "claims": {
+      "type": "array",
+      "items": {
+        "type": "object"
+      }
+    },
+    "relations": {
+      "type": "array",
+      "items": {
+        "type": "object"
+      }
+    },
+    "events": {
+      "type": "array",
+      "items": {
+        "type": "object"
+      }
+    },
+    "evidence": {
+      "type": "array",
+      "items": {
+        "type": "object"
+      }
+    }
+  }
+}

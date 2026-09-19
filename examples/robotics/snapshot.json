@@ -1,0 +1,23 @@
+{
+  "protocol_version": "0.3.0",
+  "snapshot_id": "snapshot:robotics-2026-09-19-example",
+  "pack": "robotics",
+  "created_at": "2026-09-19T00:05:00Z",
+  "previous_snapshot": null,
+  "contribution_ids": [
+    "contrib:robotics-openbot-x1-release"
+  ],
+  "diff": {
+    "added_claims": [
+      "claim:openbot-x1-release-date"
+    ],
+    "superseded_claims": [],
+    "new_events": [
+      "event:openbot-x1-product-release"
+    ],
+    "changed_relations": [
+      "relation:openbot-labs-manufactures-openbot-x1"
+    ]
+  },
+  "world_hash": null
+}

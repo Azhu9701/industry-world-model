@@ -1,0 +1,89 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://aiman.world/industry-world-model/protocol/v0.3/snapshot.schema.json",
+  "title": "Industry World Model Snapshot",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "protocol_version",
+    "snapshot_id",
+    "pack",
+    "created_at",
+    "previous_snapshot",
+    "contribution_ids",
+    "diff"
+  ],
+  "properties": {
+    "protocol_version": {
+      "const": "0.3.0"
+    },
+    "snapshot_id": {
+      "type": "string",
+      "pattern": "^snapshot:[A-Za-z0-9._:-]+$"
+    },
+    "pack": {
+      "type": "string",
+      "minLength": 1
+    },
+    "created_at": {
+      "type": "string",
+      "format": "date-time"
+    },
+    "previous_snapshot": {
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "contribution_ids": {
+      "type": "array",
+      "items": {
+        "type": "string",
+        "pattern": "^contrib:[A-Za-z0-9._:-]+$"
+      },
+      "uniqueItems": true
+    },
+    "diff": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "added_claims",
+        "superseded_claims",
+        "new_events",
+        "changed_relations"
+      ],
+      "properties": {
+        "added_claims": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        },
+        "superseded_claims": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        },
+        "new_events": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        },
+        "changed_relations": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        }
+      }
+    },
+    "world_hash": {
+      "type": [
+        "string",
+        "null"
+      ]
+    }
+  }
+}
