@@ -127,6 +127,12 @@ Domain packs define vocabulary. They do not fork provenance, review, identity, a
     scripts/
       validate-contributions.py
 
+## Multi-World architecture
+
+AIMAN.World is evolving from one domain implementation into one canonical world model with multiple domain projections. Robotics is the first World; manufacturing is the next cross-world proof. Worlds reuse identity, evidence, temporal semantics, and review rather than forking truth stores.
+
+See [docs/multi-world-architecture-v0.1.md](docs/multi-world-architecture-v0.1.md) for the architecture RFC, URL namespace plan, canonical identity migration, Robot→Manufacturing proof, and Agent Router boundary. Machine-readable planning examples live under `examples/multi-world/`.
+
 ## Domain packs
 
 A pack declares the vocabulary that is legal for a domain.

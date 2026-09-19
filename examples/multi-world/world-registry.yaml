@@ -1,0 +1,50 @@
+version: 0.1.0
+
+# Architecture example only. Runtime consumption begins in a later phase.
+worlds:
+  - world_key: robot
+    title: Robot World
+    primary_pack: robotics
+    namespace: /robot
+    status: active
+
+  - world_key: manufacturing
+    title: Manufacturing World
+    primary_pack: manufacturing
+    namespace: /manufacturing
+    status: planned
+
+  - world_key: compute
+    title: Compute World
+    primary_pack: null
+    namespace: /compute
+    status: planned
+
+  - world_key: agriculture
+    title: Agriculture World
+    primary_pack: null
+    namespace: /agriculture
+    status: planned
+
+  - world_key: logistics
+    title: Logistics World
+    primary_pack: null
+    namespace: /logistics
+    status: planned
+
+global_views:
+  timeline: /timeline
+  graph: /graph
+  search: /search
+  evidence: /evidence
+  agent: /agent
+  worlds: /worlds
+
+reserved_world_paths:
+  - timeline
+  - graph
+  - search
+  - evidence
+  - entities
+  - capabilities
+  - about

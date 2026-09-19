@@ -1,0 +1,36 @@
+{
+  "query_version": "0.1.0",
+  "query_id": "query:example-knee-actuator-sourcing",
+  "intent": "source_component",
+  "worlds": [
+    "robot",
+    "manufacturing"
+  ],
+  "subject": {
+    "canonical_id": "entity:part:example-knee-actuator"
+  },
+  "constraints": [
+    {
+      "predicate": "quantity",
+      "op": "=",
+      "value": 500
+    },
+    {
+      "predicate": "lead_time_days",
+      "op": "<=",
+      "value": 14,
+      "unit": "day"
+    }
+  ],
+  "evidence_policy": {
+    "require_verified": true,
+    "include_conflicts": true,
+    "include_validity": true
+  },
+  "return": {
+    "include_paths": true,
+    "include_evidence": true,
+    "include_unresolved_constraints": true,
+    "execute_actions": false
+  }
+}
