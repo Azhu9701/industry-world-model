@@ -9,6 +9,8 @@ WORLD.md is a plain-Markdown convention for exposing the real-world context a sy
 
 This specification defines the portable contract. The Industry World Model repository is a reference implementation, not the definition of the standard.
 
+The capitalized terms MUST, MUST NOT, SHOULD, SHOULD NOT, and MAY are normative requirement words in this document.
+
 ## 1. Goals
 
 A conforming WORLD.md should let an unfamiliar human or agent answer six questions:
