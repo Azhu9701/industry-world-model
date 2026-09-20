@@ -11,6 +11,7 @@ Open World Model specification:
 - [`WORLD.md`](WORLD.md) — Reality-First World Modeling, core invariants, update loop, and intellectual lineage.
 - [`WORLD-PROTOCOL.md`](WORLD-PROTOCOL.md) — transport-neutral identity, evidence, event, review, idempotency, error, and readback semantics.
 - [`WORLD-AGENT.md`](WORLD-AGENT.md) — cold-start and operating procedure for Agents entering or contributing to a World.
+- [`benchmarks/cold-start/README.md`](benchmarks/cold-start/README.md) — executable cold-start benchmark for unfamiliar Agents.
 
 The executable public contribution contract remains [`protocol/README.md`](protocol/README.md) + `protocol/schemas/`. The root WORLD documents define the method and semantic invariants that protocol versions must preserve.
 
@@ -115,6 +116,9 @@ Domain packs define vocabulary. They do not fork provenance, review, identity, a
     protocol/
       schemas/                 JSON Schema contract for v0.3
       README.md                protocol semantics and runtime mapping
+
+    benchmarks/
+      cold-start/              unfamiliar-Agent discovery and contribution benchmark
 
     contributions/
       <pack>/<slug>/

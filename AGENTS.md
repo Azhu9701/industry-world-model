@@ -52,6 +52,7 @@ Run:
 
     python3 -m pip install -r protocol/requirements.txt
     python3 scripts/validate-contributions.py
+    python3 scripts/run-cold-start-benchmark.py --self-test
 
 ## Deployed proposal workflow
 

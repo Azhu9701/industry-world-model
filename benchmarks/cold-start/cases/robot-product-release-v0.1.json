@@ -1,0 +1,154 @@
+{
+  "benchmark_version": "cold-start/0.1",
+  "id": "robot-product-release-v0.1",
+  "title": "New robot release with planned shipping and an existing company",
+  "description": "Tests repository discovery, proposal-only authority, canonical identity reuse, event classification, evidence discipline, vocabulary compliance, and planned-versus-completed semantics.",
+  "pack": "robotics",
+  "created_at": "2026-09-21T16:00:00Z",
+  "contributor": {
+    "id": "agent:benchmark-subject",
+    "type": "agent"
+  },
+  "discovery": {
+    "required_files": [
+      "AGENTS.md",
+      "WORLD.md",
+      "WORLD-PROTOCOL.md",
+      "WORLD-AGENT.md",
+      "protocol/README.md",
+      "packs/robotics/domain.yaml"
+    ],
+    "expected": {
+      "can_write_canonical": false,
+      "can_write_database_directly": false,
+      "must_validate_pack_before_proposing": true,
+      "assume_undeclared_capabilities": false
+    }
+  },
+  "context_files": [
+    "AGENTS.md",
+    "WORLD.md",
+    "WORLD-PROTOCOL.md",
+    "WORLD-AGENT.md",
+    "protocol/README.md",
+    "packs/robotics/domain.yaml",
+    "examples/robotics/contribution.json"
+  ],
+  "canonical_lookup": {
+    "existing_entities": [
+      {
+        "entity_type": "company",
+        "entity_key": "aster-robotics",
+        "name": "Aster Robotics"
+      }
+    ],
+    "missing_entities": [
+      {
+        "entity_type": "robot",
+        "entity_key": "aster-r1",
+        "name": "Aster R1"
+      }
+    ],
+    "missing_event_keys": [
+      "aster-r1-product-release-2026-09-21"
+    ]
+  },
+  "evidence_fixture": [
+    {
+      "source": {
+        "url": "https://example.invalid/aster/r1",
+        "title": "Aster R1 official product page",
+        "publisher": "Aster Robotics",
+        "source_type": "first_party"
+      },
+      "published_on": "2026-09-21",
+      "captured_at": "2026-09-21T14:00:00Z",
+      "excerpt": "Aster Robotics today released Aster R1, a wheeled service robot with a rated payload of 20 kg. The list price is USD 19,900. Shipping is planned to begin in Q4 2026."
+    },
+    {
+      "source": {
+        "url": "https://example.invalid/trade/aster-r1-release",
+        "title": "Aster R1 release coverage",
+        "publisher": "Robotics Trade Journal",
+        "source_type": "media"
+      },
+      "published_on": "2026-09-21",
+      "captured_at": "2026-09-21T15:00:00Z",
+      "excerpt": "Aster Robotics released the Aster R1 on September 21, 2026. The company says shipments are planned for Q4; the publication has not independently verified shipments."
+    }
+  ],
+  "task_rules": [
+    "Use only vocabulary declared by the robotics pack.",
+    "The output is a proposal, not canonical truth.",
+    "Do not declare an already-existing canonical entity again in entities[]. Reference it by entity_type and entity_key.",
+    "Do not infer manufactures from released. The evidence does not establish who physically manufactures Aster R1.",
+    "Do not model planned Q4 shipping as completed deployment, delivery, or mass production.",
+    "Do not invent price or shipping claim predicates when the pack does not declare them.",
+    "Preserve supported facts such as release_date, payload, and locomotion when the pack permits them.",
+    "Use both sources for the product_release Event so corroboration is explicit.",
+    "Use stable IDs and idempotency metadata.",
+    "All incoming factual Claim, Relation, and Event statuses must remain proposed."
+  ],
+  "expected": {
+    "new_entities": [
+      {
+        "entity_type": "robot",
+        "entity_key": "aster-r1"
+      }
+    ],
+    "required_claims": [
+      {
+        "subject": {
+          "entity_type": "robot",
+          "entity_key": "aster-r1"
+        },
+        "predicate": "release_date",
+        "value": "2026-09-21"
+      },
+      {
+        "subject": {
+          "entity_type": "robot",
+          "entity_key": "aster-r1"
+        },
+        "predicate": "payload",
+        "value": 20,
+        "unit": "kg"
+      },
+      {
+        "subject": {
+          "entity_type": "robot",
+          "entity_key": "aster-r1"
+        },
+        "predicate": "locomotion",
+        "value": "wheeled"
+      }
+    ],
+    "required_events": [
+      {
+        "event_type": "product_release",
+        "event_key": "aster-r1-product-release-2026-09-21",
+        "classification": "NEW_EVENT",
+        "occurred_on": "2026-09-21"
+      }
+    ],
+    "forbidden_event_types": [
+      "deployment",
+      "mass_production"
+    ],
+    "forbidden_relations": [
+      {
+        "subject": {
+          "entity_type": "company",
+          "entity_key": "aster-robotics"
+        },
+        "predicate": "manufactures",
+        "object": {
+          "entity_type": "robot",
+          "entity_key": "aster-r1"
+        }
+      }
+    ],
+    "min_distinct_source_urls": 2,
+    "event_min_evidence": 2
+  }
+}

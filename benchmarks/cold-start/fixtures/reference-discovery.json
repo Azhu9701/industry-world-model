@@ -1,0 +1,14 @@
+{
+  "next_files": [
+    "AGENTS.md",
+    "WORLD.md",
+    "WORLD-PROTOCOL.md",
+    "WORLD-AGENT.md",
+    "protocol/README.md",
+    "packs/robotics/domain.yaml"
+  ],
+  "can_write_canonical": false,
+  "can_write_database_directly": false,
+  "must_validate_pack_before_proposing": true,
+  "assume_undeclared_capabilities": false
+}
