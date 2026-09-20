@@ -6,6 +6,14 @@ Industry World Model is not a website template and not a vertical database dump.
 
 Agent entry: read [`AGENTS.md`](AGENTS.md) before operating this repository. This README explains the human-facing model; the Agent contract, validation commands, and write boundary live in that file.
 
+Open World Model specification:
+
+- [`WORLD.md`](WORLD.md) — Reality-First World Modeling, core invariants, update loop, and intellectual lineage.
+- [`WORLD-PROTOCOL.md`](WORLD-PROTOCOL.md) — transport-neutral identity, evidence, event, review, idempotency, error, and readback semantics.
+- [`WORLD-AGENT.md`](WORLD-AGENT.md) — cold-start and operating procedure for Agents entering or contributing to a World.
+
+The executable public contribution contract remains [`protocol/README.md`](protocol/README.md) + `protocol/schemas/`. The root WORLD documents define the method and semantic invariants that protocol versions must preserve.
+
 Robotics is the first reference implementation. The same core can support manufacturing, energy, agriculture, logistics, semiconductors, biotech, or another domain by changing the domain pack instead of forking the truth model.
 
 ## Why this exists

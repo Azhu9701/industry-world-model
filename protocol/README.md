@@ -4,6 +4,8 @@ The protocol defines a portable, review-first way to propose changes to an Indus
 
 It is deliberately independent from the current database implementation.
 
+For the method and transport-neutral semantic invariants above this executable packet format, see [`../WORLD.md`](../WORLD.md), [`../WORLD-PROTOCOL.md`](../WORLD-PROTOCOL.md), and [`../WORLD-AGENT.md`](../WORLD-AGENT.md). This directory remains the normative executable contract for v0.3 contribution JSON.
+
 ## Core objects
 
 ### Entity

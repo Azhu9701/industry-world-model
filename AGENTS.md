@@ -13,7 +13,7 @@ For the development decision loop before a world-model change, read the lightwei
 
 ## Start here
 
-1. Read this file, protocol/README.md, and the selected packs/<name>/domain.yaml.
+1. Read this file, `WORLD.md`, `WORLD-PROTOCOL.md`, `WORLD-AGENT.md`, `protocol/README.md`, and the selected `packs/<name>/domain.yaml`.
 2. Run ./scripts/bootstrap --pack <name> and do not proceed until ./scripts/healthcheck passes.
 3. Inspect GET /api/v1/packs/<name> and confirm the runtime vocabulary matches the task.
 4. Use the smallest relevant workflow in skills/*/SKILL.md.
