@@ -1,5 +1,9 @@
 # WORLD.md
 
+Version: 0.1.0-draft  
+Status: Public draft  
+Canonical project: https://github.com/Azhu9701/industry-world-model
+
 A simple, open format for describing the world a system models so humans and agents can understand what exists, what is known, what is uncertain, and what actions are possible.
 
 > Reality is upstream of the world model. Evidence is upstream of belief.
@@ -12,7 +16,16 @@ WORLD.md is intended to complement, not replace, existing project files:
 
 ## Status
 
-This document is a v0.1 draft.
+This file is the human-facing entry point for WORLD.md Specification v0.1.0-draft.
+
+The normative and governance suite is:
+
+- [SPECIFICATION.md](SPECIFICATION.md) — portable requirements and versioning;
+- [CONFORMANCE.md](CONFORMANCE.md) — what `WORLD.md v0.1 compatible` means;
+- [GOVERNANCE.md](GOVERNANCE.md) — how the canonical specification changes;
+- [ORIGIN.md](ORIGIN.md) — public origin and chronology;
+- [CHANGELOG.md](CHANGELOG.md) — version history;
+- [SPEC-LICENSE.md](SPEC-LICENSE.md) — CC BY 4.0 license for the specification text.
 
 The format is intentionally small:
 
@@ -237,6 +250,8 @@ reality
 
 ## Compatibility
 
+The normative compatibility definition is maintained in [SPECIFICATION.md](SPECIFICATION.md) and [CONFORMANCE.md](CONFORMANCE.md).
+
 An implementation can describe itself as WORLD.md-compatible when it:
 
 1. provides a discoverable `WORLD.md`;
@@ -301,4 +316,6 @@ Prefer demonstrated usage over speculative complexity.
 
 ## License
 
-This document is distributed under the repository's MIT License.
+The WORLD.md specification documents are licensed under CC BY 4.0 as described in [SPEC-LICENSE.md](SPEC-LICENSE.md).
+
+The reference implementation and software remain under the repository's MIT License unless a file states otherwise.
