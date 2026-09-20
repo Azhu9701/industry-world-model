@@ -51,6 +51,20 @@ When reality changes, submit a new Claim or Event and use temporal validity or s
 
 Changes to protocol/schemas, trust semantics, or governance should be isolated from ordinary industry-data contributions whenever practical. Explain compatibility impact in the Pull Request.
 
+## WORLD.md specification changes
+
+WORLD.md is an open specification with a separate canonical history from ordinary runtime changes.
+
+Before proposing a normative WORLD.md change:
+
+1. read `WORLD.md`, `SPECIFICATION.md`, `CONFORMANCE.md`, `GOVERNANCE.md`, `ORIGIN.md`, and `CHANGELOG.md`;
+2. describe the real interoperability problem or implementation evidence motivating the change;
+3. state whether the change is breaking, backward-compatible, or editorial;
+4. update conformance language when compatibility meaning changes;
+5. update `CHANGELOG.md`.
+
+Vendor- or domain-specific experiments should begin as extensions. They become canonical only through the public specification change process.
+
 ## Synthetic examples
 
 The OpenBot X1 contribution under contributions/robotics/_example-openbot-x1 is synthetic and exists only to keep the public contribution contract executable in CI.
