@@ -17,6 +17,7 @@ The canonical specification consists of:
 - `CONFORMANCE.md`
 - `ORIGIN.md`
 - `CHANGELOG.md`
+- `SPEC-LICENSE.md`
 - this governance document
 
 The Industry World Model runtime and robotics pack are reference implementations. They do not have special authority to redefine the portable specification without a specification change.
