@@ -2,7 +2,7 @@
 
 ## Start here
 
-1. Read this file, protocol/README.md, and the selected packs/<name>/domain.yaml.
+1. Read this file, WORLD.md, protocol/README.md, and the selected packs/<name>/domain.yaml. If changing the WORLD.md specification itself, also read SPECIFICATION.md, CONFORMANCE.md, GOVERNANCE.md, ORIGIN.md, and CHANGELOG.md.
 2. Run ./scripts/bootstrap --pack <name> and do not proceed until ./scripts/healthcheck passes.
 3. Inspect GET /api/v1/packs/<name> and confirm the runtime vocabulary matches the task.
 4. Use the smallest relevant workflow in skills/*/SKILL.md.
