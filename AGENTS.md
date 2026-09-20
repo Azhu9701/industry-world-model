@@ -1,5 +1,16 @@
 # Agent operating guide
 
+This repository is AIMAN's canonical, evidence-backed world model and contribution protocol. It owns entities, claims, evidence, relations, events, temporal state, and review boundaries; it is not the execution router or a production database editor.
+
+## Agent contract
+
+- Allowed: inspect the active pack, create proposed contribution packets, validate schemas and evidence references, and run the documented read/health checks.
+- Forbidden: invent facts or sources, promote proposals to verified state, write directly to PostgreSQL, bypass review, or treat a passing structural check as factual verification.
+- Done means the smallest relevant packet or code change is validated, provenance is preserved, the selected pack vocabulary matches, and the required readback/health check passes.
+- Unknown, conflicting, superseded, or missing values must remain explicit; never guess them away.
+
+For the development decision loop before a world-model change, read the lightweight `reality-first-development` protocol when available. This repository remains the source of truth for world-model contribution semantics.
+
 ## Start here
 
 1. Read this file, protocol/README.md, and the selected packs/<name>/domain.yaml.

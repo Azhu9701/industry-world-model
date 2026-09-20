@@ -4,6 +4,8 @@ Build a machine-readable model of a real industry from evidence-backed entities,
 
 Industry World Model is not a website template and not a vertical database dump. The framework defines how an industry can be represented, changed, reviewed, and consumed by humans and agents.
 
+Agent entry: read [`AGENTS.md`](AGENTS.md) before operating this repository. This README explains the human-facing model; the Agent contract, validation commands, and write boundary live in that file.
+
 Robotics is the first reference implementation. The same core can support manufacturing, energy, agriculture, logistics, semiconductors, biotech, or another domain by changing the domain pack instead of forking the truth model.
 
 ## Why this exists
