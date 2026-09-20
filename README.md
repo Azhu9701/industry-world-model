@@ -6,6 +6,14 @@ Industry World Model is not a website template and not a vertical database dump.
 
 Robotics is the first reference implementation. The same core can support manufacturing, energy, agriculture, logistics, semiconductors, biotech, or another domain by changing the domain pack instead of forking the truth model.
 
+## WORLD.md
+
+This repository is also dogfooding [WORLD.md](WORLD.md), a v0.1 draft for a simple, open, vendor-neutral description of the real world a system models.
+
+The goal is deliberately smaller than a new schema language. A WORLD.md gives humans and agents a predictable place to discover scope, ontology, sources of truth, evidence semantics, unknowns, action boundaries, verification paths, and the machine interfaces that implement them.
+
+The Industry World Model runtime is one reference implementation, not the definition of the format.
+
 ## Why this exists
 
 A real industry is not one table of products.
