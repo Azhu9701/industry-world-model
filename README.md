@@ -14,6 +14,8 @@ The goal is deliberately smaller than a new schema language. A WORLD.md gives hu
 
 The Industry World Model runtime is one reference implementation, not the definition of the format.
 
+The current canonical draft is **WORLD.md Specification v0.1.0-draft**. Its public history and compatibility contract live in [ORIGIN.md](ORIGIN.md), [SPECIFICATION.md](SPECIFICATION.md), [GOVERNANCE.md](GOVERNANCE.md), [CONFORMANCE.md](CONFORMANCE.md), and [CHANGELOG.md](CHANGELOG.md). Specification text is published under CC BY 4.0; the software remains MIT-licensed.
+
 ## Why this exists
 
 A real industry is not one table of products.
