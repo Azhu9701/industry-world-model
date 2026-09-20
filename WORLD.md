@@ -2,6 +2,7 @@
 
 Version: 0.1.0-draft  
 Status: Public draft  
+Origin: AIMAN.World Industry World Model work (2026)  
 Canonical project: https://github.com/Azhu9701/industry-world-model
 
 A simple, open format for describing the world a system models so humans and agents can understand what exists, what is known, what is uncertain, and what actions are possible.
