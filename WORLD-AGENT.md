@@ -24,6 +24,18 @@ Agent 不可以自行：
 - 用文章、发布时间或列表顺序替代 Event、发生时间和实体 ID；
 - 将 `received`、`pending`、HTTP 200 或本地写入成功报告为已上线。
 
+开始改动前先回答：当前工作是在增加 capability、projection 或 experiment，还是会创建 second authoritative reality？若是后者，停止并复用现有 canonical identity、Evidence、review/materialization 和 readback 路径。
+
+以下决策规则必须 fail closed：
+
+| 情况 | Agent 决策 |
+| --- | --- |
+| Search、Graph、Timeline、Web、REST 或 MCP 结果冲突 | 它们都没有最终解释权；按稳定 identity、明确 scope + time 回到 evidence-backed canonical state。无法解析时返回 `unknown` / `conflict`。 |
+| 新 model、算法或 ontology | 默认 `experimental`；输出 candidate/derived result，事实保持 `proposed` / `pending`。 |
+| 请求 promotion | 仅在显式 scope/version、Evidence/conflict、兼容或迁移、review authorization、验证与 canonical readback 全部满足时请求控制面晋升。Agent 不自授 canonical status。 |
+| model 与 evidence-backed reality 冲突 | 保留 Reality/Evidence，修改 model；不得丢弃或捏造事实来适配 schema。 |
+| Action 需要改变正式状态 | 只调用已授权的 canonical + auditable write path；不得直接修改 Projection。 |
+
 ## 2. 冷启动顺序
 
 没有 AIMAN 私有上下文时，先从仓库本身认识系统：
@@ -35,6 +47,7 @@ Agent 不可以自行：
 5. 读取任务对应的 `packs/<name>/domain.yaml`，确认合法 entity type、claim predicate、relation triple 与 event type。
 6. 如果连接 deployed node，再读取 `/api/v1/meta`、`/api/v1/capabilities` 和 `/api/v1/packs/{pack}`。
 7. 如果要贡献材料，先确认使用 Git-native contribution 还是已开放的 deployed proposal API；缺少明确 capability 或 authorization 时停止在候选结果。
+8. 标记当前工作属于 capability、projection、experiment 或 canonical change；前三者不得静默变成 authoritative fact。
 
 当前公共发现链可以概括为：
 
@@ -213,11 +226,13 @@ Repository contract → World invariants → Executable protocol → Domain pack
 
 
 - [ ] 已读取仓库契约、当前 pack，以及 deployed runtime 的 capability（如适用）。
+- [ ] 已确认改动不会创建第二套 authoritative reality；projection / experiment 不拥有 truth。
 - [ ] 已搜索 canonical Entity、alias、已有 Event、Relation 和 pending 材料。
 - [ ] 已区分 `NEW_EVENT` / `FOLLOW_UP` / `ENRICHMENT`。
 - [ ] 每条重要主张都有直接 Evidence 或明确缺口。
 - [ ] 时间、方向、状态和主体声明没有被猜测填充。
 - [ ] 只使用当前身份被授权的接口。
+- [ ] 新 model / ontology 保持 `experimental`，除非已通过显式 promotion gate。
 - [ ] 写入或提交后已按稳定 ID 做 readback，或明确标记未核验。
 - [ ] Article（如有）只是 Event 的解释层。
 - [ ] 输出了 Unknown、Conflict、Pending 和剩余风险，而不是只输出结论。

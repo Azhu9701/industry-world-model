@@ -66,6 +66,38 @@
 
 `canonicalName` 方便阅读但不是主键。名称匹配有歧义时，响应 MUST 返回 `identity_ambiguous` 或候选列表，不能静默选择一个。
 
+### 2.4 权威、模型与投影状态
+
+实现 MUST 遵守以下机器可判定语义：
+
+```json
+{
+  "ontologicalRule": "reality_over_model",
+  "canonicalDecisionRequires": [
+    "evidence",
+    "stable_identity",
+    "explicit_scope_and_time",
+    "review",
+    "materialization",
+    "readback"
+  ],
+  "canonicalState": "one_per_scope_and_time",
+  "newModelStatus": "experimental",
+  "projectionOwnsTruth": false,
+  "defaultAgentPolicy": {
+    "canonicalWrites": false,
+    "failClosed": true
+  },
+  "canonicalWriteGrant": "explicit_authorized_capability_only"
+}
+```
+
+`ontologicalRule` 表示 evidence-backed reality 与 model 冲突时必须修改 model；它不把未经审核的 observation 授予权威。Canonical 决策必须满足 `canonicalDecisionRequires`，缺少任一项时保留 `proposed`、`pending`、`unknown` 或 `conflict`。
+
+`newModelStatus` 只描述 model / ontology 的治理状态，不替代事实对象现有的 `proposed`、`verified`、`conflict` 等状态。新 model 或 ontology 默认 `experimental`。Promotion MUST 是显式控制面决定，并至少验证 scope/version、Evidence 与 conflict 处理、现有 identity/历史兼容或迁移、review authorization、validator/test 和 canonical readback；任一条件无法确认时 MUST fail closed。
+
+`defaultAgentPolicy.canonicalWrites=false` 是公共或未获显式授权 Agent 的默认 fail-closed 策略，不代表控制平面永远不能写 canonical。只有 capability contract 明确授予且当前身份获准时，才可通过既有 review、materialization、audit 与 readback 路径执行 canonical write。
+
 ## 3. 发现与能力协商
 
 ### 3.1 Repository-first
@@ -161,6 +193,8 @@ MCP、well-known manifests、CLI 或其他 Adapter 可以承载本协议，但 v
 
 具体路由能力以 `/api/v1/capabilities` 和当前实现为准；文档中出现的目标接口不能覆盖 runtime 的真实 capability。
 
+Search、Graph、Timeline、Web、REST 与 MCP 都是读面或 transport。它们返回冲突结果时，客户端 MUST 以稳定 identity 解析到同一 scope + time 下的 evidence-backed canonical state；若 canonical state 为 unknown、conflict 或无法读回，响应 MUST 保留该状态，不得选一个投影充当 truth。
+
 ## 6. Transport 映射
 
 REST/HTTP 是当前参考 runtime 的主要 transport。MCP、CLI、Git Pull Request 或其他 Adapter MAY 映射相同语义，但必须遵守以下规则：
@@ -170,6 +204,7 @@ REST/HTTP 是当前参考 runtime 的主要 transport。MCP、CLI、Git Pull Req
 - 没有 canonical write 权限时，“提交 proposal”不得显示为“修改事实”。
 - transport 内部错误不能通过空结果伪装成“没有事实”。
 - Git-native contribution、deployed proposal API 与未来 MCP/CLI 都必须收敛到同一个 review/materialization 边界。
+- Projection 可以复制、缓存或索引 canonical records，但 MUST NOT 接受绕过 canonical write path 的事实写入。
 
 ## 7. 错误码与可恢复性
 
@@ -215,6 +250,8 @@ authorize → validate → write/propose → return stable id
 ```
 
 服务不得以客户端传入的 `status=approved`、`confidence=1` 或 `canonical=true` 直接授予事实状态。审核状态由控制平面产生。
+
+Action 的现实结果必须作为 Observation / Evidence / Event 返回同一受控闭环。写 Projection、缓存或索引不构成 canonical write；`canonicalWrites=false` 时实现只能返回 proposal/contribution receipt，并保持 `proposed` / `pending`。
 
 ## 9. 安全与权限边界
 

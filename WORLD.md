@@ -5,7 +5,7 @@
 - Version: `world/0.1`
 - Status: Draft open specification
 - Scope: AIMAN.World 的机器人产业 World Model；可扩展到其他行业
-- Updated: 2026-09-20
+- Updated: 2026-09-22
 
 本文是总规范。机器接口契约见 [`WORLD-PROTOCOL.md`](WORLD-PROTOCOL.md)，Agent 的工作边界见 [`WORLD-AGENT.md`](WORLD-AGENT.md)。
 
@@ -14,6 +14,15 @@
 ## 1. World 是什么
 
 World 不是数据库、网站或文章集合。它是对现实持续观察后形成的、可被人和机器读取的状态与历史模型。
+
+> **One Reality. Many Models. Many Projections. Many Actions.**
+
+- **Reality** 是系统外部真实发生的事；Evidence 是系统能够审计和复核 Reality 的依据。
+- **Model** 是对 Reality 的解释。多个模型、算法、ontology 和推理方法可以并存、竞争和演化。
+- **Projection** 是 canonical records 的读取形态。Search、Graph、Timeline、Web、REST 和 MCP 可以复制、缓存或索引数据，但不拥有 truth。
+- **Action** 可以改变现实；正式 World State 只能通过 canonical、可审计的写入路径吸收行动结果。
+
+Reality 与可复核 Evidence 的权威高于 schema、model、document 和 Agent implementation。当 scope 与 time 明确时，一个 accepted fact 只能有一个 canonical state；不同解释可以并存为 experimental model、candidate、derived result 或 conflict，但不能形成第二套 authoritative reality。
 
 ```text
 Reality
@@ -88,6 +97,22 @@ Claim → Evidence → Source → observedAt / validPeriod
 ### 2.8 Agent 不拥有最终裁决权
 
 Agent 可以发现、读取、整理、提出候选和执行明确授权的动作；控制平面负责身份、权限、审核、审计、写入和读回。模型输出、HTTP 200、写入返回成功或一条 pending receipt，都不能单独证明 canonical 或生产事实已经成立。
+
+### 2.9 Canonical 保守，实验开放
+
+算法、搜索、推理、临时 ontology、candidate model 和 derived model MAY 自由实验。新 model 或 ontology 默认是 `experimental`；它产生的事实仍是 `proposed` 或 `pending`。只有经过显式 scope/version、Evidence 与 conflict 检查、review、受控 materialization、验证和 readback，才能晋升并影响 canonical state。实现存在、测试通过或被某个 Agent 采用都不会自动获得 canonical status。
+
+### 2.10 Projection 不拥有 truth
+
+Projection 可以重建、缓存、索引和降级，但必须保留稳定 identity、scope、time、status 与 Evidence 引用。Search、Graph、Timeline、Web、REST 或 MCP 互相冲突时，任何一个投影都没有最终解释权；系统应回到同一 scope + time 下 evidence-backed canonical state。若 canonical record 本身仍未知或冲突，就返回 `unknown` 或 `conflict`，不得用投票、排序或拼接结果制造一致性。
+
+### 2.11 Action 只通过可审计写入改变正式现实
+
+Action 不得直接修改 Search index、Graph cache、Timeline view 或其他 Projection 来宣称事实改变。行动结果必须作为 Observation / Evidence / Event 返回，通过 authorization、review、canonical materialization 和 readback 才能成为正式状态。`canonicalWrites=false` 时只能提交 proposal 或 contribution，并 fail closed。
+
+### 2.12 Model 必须服从 Reality
+
+当 model、schema 或 ontology 无法表达 evidence-backed reality 时，保留 Reality、Evidence、unknown 与 conflict，修改或替换 model。不得丢弃、改写或捏造现实来维护模型一致性。
 
 ## 3. 核心对象
 
