@@ -20,6 +20,40 @@
 - Never invent sources, URLs, quotes, identifiers, dates, or images.
 - Do not commit credentials or .env.
 
+## Reality-first reasoning discipline
+
+All feature work must follow two linked rules:
+
+> All features must conform to the shared model of reality.
+
+> The model itself must continuously submit to reality.
+
+Operationally, before introducing a feature, schema field, rule, workflow, or abstraction:
+
+1. Name the real entity, relation, event, constraint, or uncertainty that requires the change.
+2. Find the existing canonical representation and extend it instead of creating a feature-local source of truth.
+3. Identify the evidence or observation that justifies the change, and state what future observation would falsify the assumption behind it.
+4. Look for contradictions and edge cases that the current model cannot explain. Preserve them explicitly rather than coercing them into the existing schema.
+5. Prefer the smallest change that improves correspondence with reality. Do not add abstraction merely to make the architecture look cleaner.
+
+After the change:
+
+6. Run the relevant software checks.
+7. Verify the modeled result against evidence, external state, or a domain-appropriate observation path.
+8. If reality still contradicts the model, propose changing the model, ontology, rule, or workflow rather than changing the evidence to protect the abstraction.
+
+Hard rules:
+
+- Reality has veto power over the model.
+- A green test suite cannot make an incorrect world model correct.
+- Never duplicate canonical state just to simplify one feature.
+- Never suppress contradictory evidence because it is inconvenient for the current schema.
+- Stable abstractions are desirable only while they continue to explain observed reality.
+
+The working loop is:
+
+    observe -> model -> find contradictions -> act -> verify -> revise -> repeat
+
 ## Public contribution workflow
 
 For Git-native contributions, create a v0.3 contribution packet under contributions/<pack>/<slug>/contribution.json.

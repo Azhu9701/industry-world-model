@@ -71,6 +71,14 @@ WORLD.md follows two baseline principles:
 
 The internal model must not silently become more authoritative than the reality it claims to represent.
 
+The world model is provisional. An implementation SHOULD make its ontology, schemas, rules, workflows, and accepted state revisable when credible new evidence demonstrates a mismatch with reality. Internal consistency MUST NOT be preserved by falsifying, suppressing, or silently coercing contradictory observations.
+
+In short:
+
+> Reality has veto power over the model.
+
+This does not mean every observation is accepted as truth. Source quality, provenance, review, uncertainty, safety, and authorization boundaries still apply. It means those mechanisms evaluate evidence; they must not make the model unfalsifiable.
+
 A project MAY define multiple trust levels, evidence classes, source priorities, or review states. WORLD.md should make those semantics discoverable rather than forcing a universal vocabulary.
 
 ## 6. Unknowns and disagreement
