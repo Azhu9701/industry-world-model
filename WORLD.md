@@ -81,6 +81,73 @@ A WORLD.md should make clear what can be read, proposed, changed, executed, or w
 
 A change is not complete merely because code ran or data was written. The system should state how an agent or human can verify that the modeled world still corresponds to reality.
 
+### 7. The model is provisional
+
+No ontology, schema, rule, workflow, ranking, or abstraction becomes true merely because the software depends on it.
+
+When credible observations repeatedly contradict the model, treat that contradiction as evidence about the model. Preserve provenance, safety, and review boundaries while revising the representation.
+
+> Reality has veto power.
+
+A useful summary is:
+
+> All features must conform to the shared model of reality. The model itself must continuously submit to reality.
+
+This prevents two opposite failures: features that create parallel truths outside the shared world model, and a frozen world model that protects its own abstractions from contradictory evidence.
+
+## Reality-first reasoning loop for agents
+
+When an agent designs, changes, or reviews a system that claims to model reality, use this loop:
+
+1. **Observe** — inspect the current real-world state, evidence, and known unknowns before changing abstractions.
+2. **Model** — identify the entities, relations, events, constraints, and assumptions that explain the observation.
+3. **Find contradictions** — look explicitly for facts that do not fit the current model. Do not hide them to preserve elegance.
+4. **Act** — make the smallest change that should improve correspondence between the model and reality.
+5. **Verify** — check both software invariants and the external or evidence-backed result. Green tests are necessary in many systems, but they are not proof that the world model is correct.
+6. **Revise** — if reality still contradicts the model, revise the ontology, rule, assumption, or workflow rather than coercing the evidence.
+7. **Repeat** — treat the new state as the next observation, not as a final answer.
+
+This is a practical reasoning discipline:
+
+```text
+reality
+  ↓
+observation + evidence
+  ↓
+model + assumptions
+  ↓
+contradictions
+  ↓
+action
+  ↓
+verification
+  ↓
+revised model / new reality
+  ↺
+```
+
+Before adding a feature, schema field, rule, or workflow, an agent should be able to answer:
+
+- What real entity, relation, event, constraint, or uncertainty requires this?
+- Where is that concept already represented in the shared world model?
+- Would this change create a second source of truth or a parallel ontology?
+- What evidence supports the assumption behind the change?
+- What future observation would falsify that assumption?
+- How are conflicting or inconvenient observations preserved?
+- What external result, evidence path, or state transition will show that the change worked?
+- If the model and reality disagree after the change, which part of the model is allowed to change?
+
+Common anti-patterns include:
+
+- **Parallel truth** — a feature invents its own copy of an entity or state instead of using the shared model.
+- **Model protection** — contradictory evidence is discarded because it does not fit the current schema.
+- **Test-only verification** — passing tests is treated as proof that the represented world is correct.
+- **Hidden contradiction** — conflicts are normalized away instead of represented explicitly.
+- **Abstraction-first development** — new layers are introduced before a recurring real-world need demonstrates them.
+- **Irreversible canonization** — an assumption becomes difficult to revise merely because many features now depend on it.
+
+The goal is not permanent instability. Stable abstractions are valuable when they continue to explain reality. The discipline is simply that internal consistency never outranks external correspondence.
+
 ## Recommended contents
 
 WORLD.md has no required headings. A useful file will usually cover most of the following.
