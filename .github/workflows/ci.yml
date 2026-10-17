@@ -25,6 +25,8 @@ jobs:
         run: python scripts/test_sensor_kev_bridge.py
       - name: Test World Studio WS-01 synthetic fixture
         run: python scripts/test-world-studio-fixture.py
+      - name: Test World Studio content impact prototype
+        run: python scripts/test-world-studio-impact.py
 
   api:
     runs-on: ubuntu-latest
