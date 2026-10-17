@@ -15,11 +15,17 @@ Run locally:
 
 ```sh
 python3 scripts/test-world-studio-fixture.py
+python3 scripts/test-world-studio-impact.py
+python3 scripts/world_studio_impact.py tests/fixtures/world-studio/payload-revision.json
 ```
 
 This test checks the fixture's deterministic inputs and expected outputs;
-it **does not assert that review/materialization, change outbox, content
-references, channel updates or recovery already exist**. Those remain WS-02
+it **does not assert that review/materialization, change outbox, persisted
+content references, channel updates or recovery already exist**. The pure
+`world_studio_impact.py` prototype computes draft-review and published-correction
+task *suggestions* from this fixture only. It rejects non-synthetic input,
+is deterministic under repeated and reordered calls, and never publishes,
+updates approvals, touches a database, or reads private customer material. Those remain WS-02
 and WS-03 deliverables, with separate runtime tests and receipts.
 
 The test must never write to canonical PostgreSQL, publish content, use real
