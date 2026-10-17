@@ -1,0 +1,163 @@
+{
+  "fixtureVersion": 1,
+  "synthetic": true,
+  "fixturePurpose": "WS-01 test data only; NOT a real-world claim, Contribution Packet or deployed runtime record.",
+  "world": "world:robotics-demo",
+  "pack": "robotics",
+  "entity": {
+    "entityType": "robot",
+    "entityKey": "demo-robot-a",
+    "displayName": "Demo Robot A (synthetic)"
+  },
+  "change": {
+    "changeKey": "world:robotics-demo:claim:demo-robot-a-payload-v2",
+    "kind": "claim_supersession",
+    "oldClaim": {
+      "id": "claim:demo-robot-a-payload-v1",
+      "version": 1,
+      "predicate": "payload",
+      "value": 5,
+      "unit": "kg",
+      "status": "superseded",
+      "evidenceIds": [
+        "evidence:synthetic-old-payload"
+      ]
+    },
+    "newClaim": {
+      "id": "claim:demo-robot-a-payload-v2",
+      "version": 2,
+      "predicate": "payload",
+      "value": 4,
+      "unit": "kg",
+      "status": "verified",
+      "supersedes": [
+        "claim:demo-robot-a-payload-v1"
+      ],
+      "evidenceIds": [
+        "evidence:synthetic-new-payload"
+      ]
+    }
+  },
+  "contents": [
+    {
+      "id": "content:demo-product-page",
+      "type": "site_page",
+      "state": "published",
+      "revision": 3,
+      "approvedRevision": 3,
+      "factReferences": [
+        {
+          "world": "world:robotics-demo",
+          "pack": "robotics",
+          "claimId": "claim:demo-robot-a-payload-v1",
+          "version": 1
+        }
+      ]
+    },
+    {
+      "id": "content:demo-comparison",
+      "type": "article",
+      "state": "published",
+      "revision": 2,
+      "approvedRevision": 2,
+      "factReferences": [
+        {
+          "world": "world:robotics-demo",
+          "pack": "robotics",
+          "claimId": "claim:demo-robot-a-payload-v1",
+          "version": 1
+        },
+        {
+          "world": "world:robotics-demo",
+          "pack": "robotics",
+          "claimId": "claim:demo-unrelated",
+          "version": 1
+        }
+      ]
+    },
+    {
+      "id": "content:demo-unpublished-draft",
+      "type": "xhs_draft",
+      "state": "draft",
+      "revision": 4,
+      "approvedRevision": 4,
+      "factReferences": [
+        {
+          "world": "world:robotics-demo",
+          "pack": "robotics",
+          "claimId": "claim:demo-robot-a-payload-v1",
+          "version": 1
+        }
+      ]
+    },
+    {
+      "id": "content:demo-social-post",
+      "type": "x_post",
+      "state": "published",
+      "revision": 1,
+      "approvedRevision": 1,
+      "factReferences": [
+        {
+          "world": "world:robotics-demo",
+          "pack": "robotics",
+          "claimId": "claim:demo-robot-a-payload-v1",
+          "version": 1
+        }
+      ]
+    },
+    {
+      "id": "content:demo-service-manual",
+      "type": "site_page",
+      "state": "published",
+      "revision": 2,
+      "approvedRevision": 2,
+      "factReferences": [
+        {
+          "world": "world:robotics-demo",
+          "pack": "robotics",
+          "claimId": "claim:demo-other-field",
+          "version": 1
+        }
+      ]
+    },
+    {
+      "id": "content:other-world-same-claim-id",
+      "type": "site_page",
+      "state": "published",
+      "revision": 1,
+      "approvedRevision": 1,
+      "factReferences": [
+        {
+          "world": "world:manufacturing-demo",
+          "pack": "robotics",
+          "claimId": "claim:demo-robot-a-payload-v1",
+          "version": 1
+        }
+      ]
+    }
+  ],
+  "expected": {
+    "affectedContentIds": [
+      "content:demo-product-page",
+      "content:demo-comparison",
+      "content:demo-unpublished-draft",
+      "content:demo-social-post"
+    ],
+    "unaffectedContentIds": [
+      "content:demo-service-manual",
+      "content:other-world-same-claim-id"
+    ],
+    "draftApprovalsInvalidated": [
+      "content:demo-unpublished-draft"
+    ],
+    "publishedCorrectionQueue": [
+      "content:demo-product-page",
+      "content:demo-comparison",
+      "content:demo-social-post"
+    ],
+    "unregisteredContentCoverage": "unknown",
+    "oldClaimRetained": true,
+    "newClaimSupersedesOld": true,
+    "noAutomaticPublications": true
+  }
+}
